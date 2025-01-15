@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jeffrey Sánchez</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/jegasape/goget-wallpaper@dev/images/1757435130797.jpeg" fetchpriority="high" type="image/jpeg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath fill='%23ffffff' d='M440-183v-274L200-596v274l240 139Zm80 0 240-139v-274L520-457v274Zm-40-343 237-137-237-137-237 137 237 137ZM160-252q-19-11-29.5-29T120-321v-318q0-22 10.5-40t29.5-29l280-162q19-11 40-11t40 11l280 162q19 11 29.5 29t10.5 40v318q0 22-10.5 40T800-252L520-90q-19 11-40 11t-40-11L160-252Zm320-228Z'/%3E%3C/svg%3E">
   <style>
     *,
@@ -21,10 +23,10 @@
     :root {
       --bg: #0e0e0e;
       --surface: #161616;
-      --border: #262626;
-      --ink: #e8e8e8;
-      --mid: #888;
-      --faint: #555;
+      --border: #2a2a2a;
+      --ink: #f2f2f2;
+      --mid: #b0b0b0;
+      --faint: #787878;
       --pill-bg: #1e1e1e;
     }
 
@@ -39,17 +41,17 @@
     }
 
     html {
-      font-size: 22px;
+      font-size: 26px;
       scroll-behavior: smooth;
     }
 
     body {
       background: var(--bg);
       color: var(--ink);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Computer Modern Sans', 'Inter', sans-serif;
       font-weight: 300;
       line-height: 1.65;
-      padding: 0 1.5rem 6rem;
+      padding: 0 0 6rem;
     }
 
     a {
@@ -60,16 +62,17 @@
     nav {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
       background: var(--bg);
       border-bottom: 1px solid var(--border);
       padding: 0.75rem 0;
-      margin-bottom: 4rem;
+      margin-bottom: 0;
     }
 
     .nav-inner {
       max-width: 900px;
       margin: 0 auto;
+      padding: 0 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -132,7 +135,7 @@
       border: 1px solid var(--border);
       color: var(--faint);
       cursor: pointer;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Computer Modern Sans', 'Inter', sans-serif;
       font-size: 0.7rem;
       font-weight: 400;
       padding: 0.2rem 0.6rem;
@@ -156,13 +159,69 @@
     }
 
     .page {
-      max-width: 680px;
+      max-width: 900px;
       margin: 0 auto;
+      padding: 0 1.5rem;
     }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .about-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border-left: 1px solid var(--border);
+      padding-left: 2rem;
+      padding-top: 0.2rem;
+    }
+
+    .aside-block { display: flex; flex-direction: column; gap: 0.35rem; }
+    .aside-label { font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); }
+    .aside-val { font-size: 0.78rem; opacity: 0.8; font-weight: 300; line-height: 1.6; }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .bcard {
+      background: var(--surface);
+      padding: 1.3rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: background 0.18s;
+      cursor: default;
+    }
+
+    .bcard:hover { background: #1c1c1c; }
+    html.light .bcard:hover { background: #e8e7e3; }
+
+    .bcard.w2 { grid-column: span 1; }
+
+    .bcard-head { display: flex; flex-direction: column; gap: 0.12rem; }
+    .bcard-title { font-size: 0.9rem; font-weight: 500; letter-spacing: -0.01em; line-height: 1.3; color: var(--ink); }
+    .bcard-company { font-size: 0.76rem; color: var(--mid); font-weight: 300; }
+    .bcard-date { font-size: 0.68rem; color: var(--faint); font-weight: 400; margin-top: 0.08rem; }
+
+    .bcard-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.28rem; flex: 1; }
+    .bcard-bullets li { font-size: 0.76rem; opacity: 0.72; line-height: 1.55; padding-left: 0.8rem; position: relative; }
+    .bcard-bullets li::before { content: "–"; position: absolute; left: 0; color: var(--border); }
+
+    .bcard-promoted { font-size: 0.62rem; color: #4ade80; font-weight: 400; opacity: 0.8; }
 
     .page-wide {
       max-width: 900px;
       margin: 0 auto;
+      padding: 0 1.5rem;
     }
 
     .home-name {
@@ -236,7 +295,7 @@
     .tl-line2 { display: block; }
 
     .tl-user   { color: #4ade80; font-weight: 600; }
-    .tl-at     { color: #444; }
+    .tl-at     { color: #aaa; font-weight: 700; }
     .tl-host   { color: #60a5fa; font-weight: 600; }
     .tl-colon  { color: #444; }
     .tl-path   { color: #c084fc; font-weight: 500; }
@@ -248,6 +307,16 @@
     #tagline-cursor {
       color: #4ade80;
       animation: blink 1.05s step-end infinite;
+    }
+
+    @keyframes fireFlicker {
+      0%   { transform: scaleY(1) rotate(-4deg); opacity: 0.85; }
+      100% { transform: scaleY(1.18) rotate(4deg); opacity: 1; }
+    }
+
+    @keyframes bobble {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-4px); }
     }
 
     @keyframes blink {
@@ -318,11 +387,12 @@
     }
 
     .section-label {
-      font-size: 0.75rem;
-      font-weight: 500;
+      font-size: 1.25rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--faint);
+      letter-spacing: 0.14em;
+      color: var(--ink);
+      opacity: 0.6;
       margin-bottom: 1.4rem;
     }
 
@@ -842,230 +912,6 @@
       border-color: var(--mid);
     }
 
-    .pokedesk-sub {
-      font-size: 0.85rem;
-      color: var(--mid);
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .poke-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .pk-card {
-      position: relative;
-      background: var(--surface);
-      overflow: hidden;
-      aspect-ratio: 3 / 4;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pk-front {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0.8rem 0.6rem 0.7rem;
-      gap: 0.25rem;
-      transition: opacity 0.22s ease, transform 0.22s ease;
-    }
-
-    .pk-card:hover .pk-front {
-      opacity: 0;
-      transform: translateY(-6px);
-      pointer-events: none;
-    }
-
-    .pk-num {
-      position: absolute;
-      top: 0.5rem;
-      left: 0.6rem;
-      font-size: 0.52rem;
-      font-weight: 600;
-      color: var(--faint);
-      letter-spacing: 0.06em;
-    }
-
-    .pk-sprite-wrap {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .pk-sprite {
-      width: 76px;
-      height: 76px;
-      image-rendering: pixelated;
-      object-fit: contain;
-      display: block;
-      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.20));
-      transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1);
-    }
-
-    .pk-card:hover .pk-sprite {
-      transform: scale(1.1) translateY(-3px);
-    }
-
-    .pk-name {
-      font-size: 0.58rem;
-      font-weight: 600;
-      color: var(--ink);
-      text-align: center;
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-    }
-
-    .pk-types {
-      display: flex;
-      gap: 0.18rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 0.15rem;
-    }
-
-    .pk-type {
-      font-size: 0.46rem;
-      font-weight: 700;
-      padding: 0.07rem 0.32rem;
-      border-radius: 2px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #fff;
-    }
-
-    .pk-back {
-      position: absolute;
-      inset: 0;
-      background: var(--bg);
-      padding: 0.65rem 0.7rem 0.6rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.2rem;
-      transform: translateY(100%);
-      transition: transform 0.26s cubic-bezier(.4, 0, .2, 1);
-    }
-
-    .pk-card:hover .pk-back {
-      transform: translateY(0);
-    }
-
-    .pk-back-name {
-      font-size: 0.58rem;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.05rem;
-    }
-
-    .pk-back-gen {
-      font-size: 0.46rem;
-      color: var(--faint);
-      font-weight: 300;
-      margin-bottom: 0.25rem;
-    }
-
-    .pk-stat-row {
-      display: flex;
-      align-items: center;
-      gap: 0.28rem;
-    }
-
-    .pk-stat-label {
-      font-size: 0.44rem;
-      font-weight: 700;
-      color: var(--faint);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      width: 1.7rem;
-      flex-shrink: 0;
-    }
-
-    .pk-stat-val {
-      font-size: 0.48rem;
-      font-weight: 500;
-      color: var(--ink);
-      width: 1.4rem;
-      text-align: right;
-      flex-shrink: 0;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .pk-bar {
-      flex: 1;
-      height: 3px;
-      background: var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .pk-bar-fill {
-      height: 100%;
-      border-radius: 2px;
-    }
-
-    .pk-bst {
-      margin-top: 0.3rem;
-      font-size: 0.5rem;
-      font-weight: 700;
-      color: var(--ink);
-      text-align: right;
-      border-top: 1px solid var(--border);
-      padding-top: 0.22rem;
-    }
-
-    .pk-bst span {
-      color: var(--faint);
-      font-weight: 300;
-    }
-
-    .t-normal { background: #9fa19f }
-    .t-fire { background: #e62829 }
-    .t-water { background: #2980ef }
-    .t-grass { background: #3fa129 }
-    .t-electric { background: #fac000; color: #333 !important }
-    .t-ice { background: #3dcef3; color: #333 !important }
-    .t-fighting { background: #ff8000 }
-    .t-poison { background: #9141cb }
-    .t-ground { background: #915121 }
-    .t-flying { background: #81b9ef; color: #333 !important }
-    .t-psychic { background: #ef4179 }
-    .t-bug { background: #91a119 }
-    .t-rock { background: #afa981; color: #333 !important }
-    .t-ghost { background: #704170 }
-    .t-dragon { background: #5060e1 }
-    .t-dark { background: #624d4e }
-    .t-steel { background: #60a1b8; color: #333 !important }
-    .t-fairy { background: #ef70ef }
-
-    .bar-hp { background: #ff5959; }
-    .bar-atk { background: #f5a623; }
-    .bar-def { background: #c8b000; }
-    .bar-spa { background: #6ec6f5; }
-    .bar-spd { background: #78c850; }
-    .bar-spe { background: #f85888; }
-
-    .pk-note {
-      margin-top: 1.4rem;
-      font-size: 0.58rem;
-      color: var(--faint);
-      font-weight: 300;
-      line-height: 1.55;
-    }
-
     .nav-mobile-bar {
       display: none;
     }
@@ -1076,16 +922,14 @@
 
     @media (max-width: 780px) {
       html { font-size: 18px; }
-      body { padding: 0 1.2rem 5rem; }
-      .page, .page-wide { max-width: 100%; }
+      body { padding: 0 0 5rem; }
+      .page, .page-wide { max-width: 100%; padding: 0 1.2rem; }
       .nav-inner { max-width: 100%; padding: 0 1.2rem; }
-      .poke-grid { grid-template-columns: repeat(4, 1fr); }
-      .pk-sprite { width: 64px; height: 64px; }
     }
 
     @media (max-width: 560px) {
       html { font-size: 16px; }
-      body { padding: 0 1rem 4rem; }
+      body { padding: 0 0 4rem; }
 
       .nav-left { display: none; flex-direction: column; gap: 0; }
       .nav-right { display: none; flex-direction: column; gap: 0; }
@@ -1194,19 +1038,163 @@
       .list-grid { grid-template-columns: 1fr; }
       .proj-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 5.5rem 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-aside { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 1rem; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .bcard.w2 { grid-column: span 1; }
 
       .cert { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
       .cert-link { align-self: flex-start; }
 
-      .poke-grid { grid-template-columns: repeat(3, 1fr); }
-      .pk-sprite { width: 56px; height: 56px; }
+      nav { margin-bottom: 0; }
 
-      nav { margin-bottom: 2.5rem; }
+      .cv-iframe { height: calc(100vh - 48px); }
     }
 
     @media (max-width: 360px) {
-      .poke-grid { grid-template-columns: repeat(2, 1fr); }
       html { font-size: 15px; }
+    }
+
+    .view.active:not(#view-home):not(#view-cv) {
+      padding-top: 4rem;
+    }
+
+    #view-cv.active {
+      padding-top: 0;
+    }
+
+    .hero-banner {
+      position: relative;
+      width: 100%;
+      margin: 0 0 3.5rem 0;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      width: 100%;
+      height: clamp(300px, 44vw, 540px);
+      object-fit: cover;
+      object-position: center 35%;
+      display: block;
+      filter: brightness(0.44) saturate(1.2) contrast(1.06);
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+      transform: scale(1.0);
+      will-change: transform;
+    }
+
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      bottom: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1.5rem 0;
+    }
+
+    .hero-name {
+      font-size: clamp(2.7rem, 6.5vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 0.7rem;
+      text-align: center;
+      color: #ffffff;
+      -webkit-text-stroke: 1px rgba(0,0,0,0.35);
+      paint-order: stroke fill;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.-7rem, 2vw, 1.2rem);
+      color: #ffffff;
+      font-weight: 600;
+      max-width: 640px;
+      line-height: 1.5;
+      text-align: center;
+      -webkit-text-stroke: 0.4px rgba(0,0,0,0.3);
+      paint-order: stroke fill;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.55);
+      letter-spacing: 0.005em;
+    }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(2rem, 6vw, 6rem);
+      padding: 0 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 50%, transparent 100%);
+    }
+
+    .hs {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.22rem;
+    }
+
+    .hs-value {
+      font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      -webkit-text-stroke: 0.8px rgba(0,0,0,0.3);
+      paint-order: stroke fill;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.55);
+    }
+
+    .hs-label {
+      font-size: clamp(0.6rem, 1.15vw, 0.78rem);
+      font-weight: 600;
+      color: rgba(255,255,255,0.88);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: center;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+    }
+
+    @media (max-width: 780px) {
+      .hero-bg { height: clamp(260px, 55vw, 360px); }
+    }
+
+    @media (max-width: 560px) {
+      .hero-bg { height: clamp(240px, 70vw, 320px); }
+      .hero-content { bottom: 88px; }
+      .hero-stats { height: 88px; gap: 1.4rem; }
+      .hs-value { font-size: 1.5rem; }
+      .hs-label { font-size: 0.55rem; }
+    }
+
+    @media (min-width: 1800px) {
+      .hero-bg { height: 580px; }
+      .hero-stats { height: 110px; }
+      .hero-content { bottom: 110px; }
+    }
+
+    /* CV View */
+    .cv-container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .cv-iframe {
+      width: 100%;
+      height: calc(100vh - 48px);
+      border: none;
+      border-radius: 0;
+      background: var(--surface);
+      display: block;
     }
   </style>
 </head>
@@ -1219,7 +1207,7 @@
       <div class="nav-mobile-bar">
         <span class="nav-brand">Jeffrey Sánchez</span>
         <div class="nav-mobile-actions">
-          <button class="theme-btn" id="theme-toggle">● Dark</button>
+          <button class="theme-btn" id="theme-toggle">☀ Light</button>
           <button class="hamburger" id="hamburger" aria-label="Toggle menu">
             <span></span><span></span><span></span>
           </button>
@@ -1230,7 +1218,8 @@
         <a class="active" data-view="home">home/</a>
         <a data-view="projects">dist/</a>
         <a data-view="list100">backlog/</a>
-        <a data-view="pokedesk">pokedex/</a>
+        <a href="https://jegasape.github.io/70bc9d05f8d195ef4c2b870e4448c575.pdf" target="_blank" rel="noopener noreferrer" class="nav-ext">cv/ <span
+            class="material-icons" style="font-size:0.75rem;vertical-align:middle;">open_in_new</span></a>
         <a href="https://youtube.com/jegasape" target="_blank" rel="noopener noreferrer" class="nav-ext">YouTube <span
             class="material-icons" style="font-size:0.75rem;vertical-align:middle;">open_in_new</span></a>
         <a href="https://github.com/jegasape" target="_blank" rel="noopener noreferrer" class="nav-ext">GitHub <span
@@ -1238,246 +1227,234 @@
       </div>
       <div class="nav-right">
         <div class="nav-sep"></div>
-        <button class="theme-btn" id="theme-toggle-desk">● Dark</button>
+        <button class="theme-btn" id="theme-toggle-desk">☀ Light</button>
       </div>
     </div>
   </nav>
 
   <div id="view-home" class="view active">
+    <div class="hero-banner">
+        <img class="hero-bg"
+          src="https://cdn.jsdelivr.net/gh/jegasape/goget-wallpaper@dev/images/1757435130797.jpeg"
+          alt="Tech background"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high">
+        <div class="hero-content">
+          <h1 class="hero-name">Jeffrey Sánchez</h1>
+          <p class="hero-tagline">Fullstack Software Engineer with special interest in Machine Learning, Golang, and Distributed Systems.</p>
+        </div>
+        <div class="hero-stats">
+          <div class="hs"><span class="hs-value">12+</span><span class="hs-label">Years of experience</span></div>
+          <div class="hs"><span class="hs-value">10+</span><span class="hs-label">Companies worked with</span></div>
+          <div class="hs"><span class="hs-value">8+</span><span class="hs-label">Languages &amp; stacks</span></div>
+        </div>
+    </div>
+
     <div class="page">
-      <h1 class="home-name">Jeffrey Sánchez</h1>
-      <p class="home-tagline">Fullstack Software Engineer with special interest in Machine Learning, Golang, and Distributed Systems.</p>
-      <div class="stats-row">
-        <div class="stat"><span class="stat-value">12+</span><span class="stat-label">Years of experience</span></div>
-        <div class="stat"><span class="stat-value">10+</span><span class="stat-label">Companies worked with</span></div>
-        <div class="stat"><span class="stat-value">8+</span><span class="stat-label">Languages &amp; stacks</span></div>
-      </div>
+
       <section>
         <p class="section-label">About</p>
-        <p style="font-size:0.92rem;opacity:0.8;line-height:1.75;">Over the course of 12 years, I have developed systems
-          that operate well when they are working and have problems when they don't, with scalable architecture and
-          automated processes giving people back their time. My primary programming languages are <strong style="font-weight:700;color:var(--ink);opacity:1;">C#, TypeScript, Go and
-          Python</strong>, but writing code that is working for this moment is not my sole craft. I also want to write code that
-          will continue to work after I've moved on to another opportunity.</p>
-        <p style="font-size:0.92rem;opacity:0.8;line-height:1.75;margin-top:0.9rem;">I don't think of deployment methods
-          as an afterthought, but as part of my thought process. Both Docker and Kubernetes can be used to accomplish
-          the goals of "quickly" and "with certainty," and I believe they do not need to be opposed. I am concerned when
-          projects are completed about whether or not the maintainers will have the skills to do so. Any system that
-          relies on one person's capability to maintain it is a risk.</p>
-        <p style="font-size:0.92rem;opacity:0.8;line-height:1.75;margin-top:0.9rem;">I will support my coworkers and
-          invest time in developing them through mentoring and justifying my decision-making. I believe the greatest
-          value comes from creating a cohesive team that shares the same understanding of the solution they collectively
-          developed. I am most successful working through difficult problems with significant ramifications, alongside
-          other serious-minded people in pursuit of the best solution.</p>
+        <div class="about-grid">
+          <div class="about-text">
+            <p style="font-size:0.88rem;opacity:0.8;line-height:1.75;">Over the course of 12 years, I have developed systems
+              that operate well when they are working and have problems when they don't, with scalable architecture and
+              automated processes giving people back their time. My primary programming languages are <strong style="font-weight:700;color:var(--ink);opacity:1;">C#, TypeScript, Golang and
+              Python</strong>, but writing code that is working for this moment is not my sole craft.</p>
+            <p style="font-size:0.88rem;opacity:0.8;line-height:1.75;margin-top:0.85rem;">I don't think of deployment methods
+              as an afterthought, but as part of my thought process. Both Docker and Kubernetes can accomplish the goals of
+              "quickly" and "with certainty." Any system that relies on one person's capability to maintain it is a risk.</p>
+            <p style="font-size:0.88rem;opacity:0.8;line-height:1.75;margin-top:0.85rem;">I will support my coworkers and
+              invest time in developing them through mentoring and justifying my decision-making. I am most successful working
+              through difficult problems with significant ramifications, alongside other serious-minded people.</p>
+          </div>
+          <div class="about-aside">
+            <div class="aside-block">
+              <span class="aside-label">Based in</span>
+              <span class="aside-val">Santo Domingo, DO</span>
+            </div>
+            <div class="aside-block">
+              <span class="aside-label">Experience</span>
+              <span class="aside-val">12+ years</span>
+            </div>
+            <div class="aside-block">
+              <span class="aside-label">Languages</span>
+              <span class="aside-val">C#, TypeScript<br>Golang, Python</span>
+            </div>
+            <div class="aside-block">
+              <span class="aside-label">Infra</span>
+              <span class="aside-val">Docker · AWS · K8s<br>CI/CD · Bash</span>
+            </div>
+            <div class="aside-block">
+              <span class="aside-label">Interests</span>
+              <span class="aside-val">ML · Distributed Systems<br>Open Source · Chess</span>
+            </div>
+            <div class="aside-block">
+              <span class="aside-label">Spoken</span>
+              <span class="aside-val">Spanish (native)<br>Portuguese (conversational)</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section>
         <p class="section-label">Experience</p>
+        <div class="bento-grid">
 
-        <div class="job">
-          <div class="job-row"><span class="job-title">Software Go Engineer</span><span class="job-date"></span></div>
-          <p class="job-company">Bitget · Remote · Contract</p>
-          <ul>
-            <li>Reduced API response times by ~40% by profiling and rewriting hot-path handlers in idiomatic Go,
-              eliminating unnecessary allocations and leveraging connection pooling.</li>
-            <li>Optimised core database queries through index redesign and query restructuring, cutting average query
-              execution time by ~55% and reducing DB load under peak traffic.</li>
-            <li>Improved system throughput by ~35% by refactoring synchronous blocking calls into concurrent goroutine
-              pipelines, handling higher request volumes without additional infrastructure.</li>
-            <li>Participated in service layer refactoring, helping decouple business logic from data access concerns and
-              improving overall code maintainability.</li>
-          </ul>
-          <div class="tag-row"><span class="tag">Go</span><span class="tag">PostgreSQL</span><span
-              class="tag">Docker</span><span class="tag">REST APIs</span><span class="tag">Git</span></div>
-        </div>
-
-        <div class="job">
-          <div class="job-row"><span class="job-title">Senior Software Developer</span><span class="job-date">Feb 2025 –
-              May 2025</span></div>
-          <p class="job-company">Arajet · Boca Chica, Santo Domingo, DO · Hybrid</p>
-          <ul>
-            <li>Boosted data processing 3× with Python pipelines.</li>
-            <li>Collaborated with technical leadership and DevOps to establish and enforce development best practices
-              across the engineering org.</li>
-            <li>Standardized development framework and architecture, contributing to the internal core of
-              new.arajet.com.</li>
-            <li>Mentored 6+ developers in Python best practices, code review standards, and commit discipline.</li>
-          </ul>
-          <div class="tag-row"><span class="tag">Python</span><span class="tag">C#</span><span
-              class="tag">RPA</span><span class="tag">AKS</span><span class="tag">Docker</span><span
-              class="tag">Kubernetes</span><span class="tag">Azure</span><span class="tag">Git</span></div>
-        </div>
-
-        <div class="job">
-          <div class="job-row"><span class="job-title">Senior Software Engineer – AI</span><span class="job-date">Sep
-              2024 – Nov 2024</span></div>
-          <p class="job-company">GNS · Remote · Contract</p>
-          <ul>
-            <li>Designed full observability stack: Grafana dashboards, Loki log aggregation, and Prometheus metrics for
-              end-to-end microservice visibility.</li>
-            <li>Active contributor to the Pipecat open-source community, building real-time AI voice agent pipeline
-              components.</li>
-            <li>Architected AI agent orchestration services using Python and FastAPI, integrating LLMs for intent
-              detection, summarisation, and quality monitoring.</li>
-          </ul>
-          <div class="tag-row"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Genesys
-              Cloud</span><span class="tag">Grafana</span><span class="tag">Loki</span><span
-              class="tag">Prometheus</span><span class="tag">Pipecat</span><span class="tag">Docker</span><span
-              class="tag">Git</span></div>
-        </div>
-
-        <div class="job">
-          <div class="job-row"><span class="job-title">Senior Software Engineer</span><span class="job-date">Mar 2024 –
-              Jul 2024</span></div>
-          <p class="job-company">CRECERLAB · Remote</p>
-          <ul>
-            <li>Led backend architecture design for core product features focused on performance and scalability.</li>
-            <li>Mentored junior developers and established engineering best practices including code review standards
-              and CI/CD workflows.</li>
-          </ul>
-          <div class="tag-row"><span class="tag">Python</span><span class="tag">JavaScript</span><span
-              class="tag">React</span><span class="tag">Docker</span><span class="tag">SQL</span><span
-              class="tag">Git</span></div>
-        </div>
-
-        <div class="job">
-          <div class="job-row"><span class="job-title">Senior Software Engineer</span><span class="job-date">May 2023 –
-              Feb 2024 </span></div>
-          <p class="job-company">Antillean Software (AS) · Santo Domingo, DO</p>
-          <ul>
-            <li>Led migration of core apps from legacy monoliths to microservice architecture using FastAPI and Alembic.</li>
-            <li>Managed PostgreSQL migrations and centralised log management with MongoDB, improving reliability and
-              query performance.</li>
-            <li>Spearheaded container-based deployments on AWS with Docker and Kubernetes; mentored the engineering
-              team.</li>
-          </ul>
-          <div class="tag-row"><span class="tag">Python</span><span class="tag">FastAPI</span><span
-              class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">Alembic</span><span
-              class="tag">Kubernetes</span><span class="tag">AWS</span><span class="tag">Git</span></div>
-        </div>
-
-        <div class="job">
-          <div class="job-row"><span class="job-title">Senior Software Engineer</span><span class="job-date">May 2022 –
-              Mar 2023</span></div>
-          <p class="job-company">Ed-Fi Alliance · Austin, TX · Remote</p>
-          <ul>
-            <li>Architected ETL data lake pipeline with Dagster on AWS, enabling customer-facing visualisation via Power
-              BI.</li>
-            <li>Optimised PL/SQL stored procedures and database objects for downstream reporting and analytics.</li>
-          </ul>
-          <div class="tag-row"><span class="tag">Python</span><span class="tag">C#</span><span
-              class="tag">Dagster</span><span class="tag">AWS</span><span class="tag">PostgreSQL</span><span
-              class="tag">Power BI</span><span class="tag">Git</span></div>
-        </div>
-
-        <div class="company-group open" id="cbord-group">
-          <div class="cg-header">
-            <div class="cg-left">
-              <span class="cg-company-name">CBORD</span>
-              <span class="cg-company-meta">Ithaca, NY · Remote</span>
+          <div class="bcard">
+            <div class="bcard-head">
+              <span class="bcard-title">Software Go Engineer &nbsp;<span style="font-size:0.85rem;animation:fireFlicker 0.6s ease-in-out infinite alternate;display:inline-block;">🔥</span><span style="font-size:0.85rem;display:inline-block;margin-left:0.1rem;">👨🏻‍💻</span></span>
+              <span class="bcard-company">Bitget · Remote · Contract</span>
+              <span class="bcard-date">2025 – Present</span>
             </div>
+            <ul class="bcard-bullets">
+              <li>Optimized core RPC services handling 2.9M peak QPS, achieving 50% compute resource savings and 30% latency reduction, conducted thorough staging/production testing and traffic diversion.</li>
+              <li>Improved system throughput by ~35% by refactoring synchronous blocking calls into concurrent goroutine pipelines.</li>
+              <li>Enhanced on call efficiency for Wallet services by developing AI driven analysers and auto conclusion features in the Oncall Agent, used Golang, LLMs, and vector databases to rank relevant events, correlate error logs with code locations, and suggest root causes, reducing engineers' on call burden.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Golang</span><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">RabbitMQ</span><span class="tag">Docker</span><span class="tag">gRPC</span><span class="tag">AWS</span><span class="tag">Git</span></div>
           </div>
-          <div class="cg-roles">
-            <div class="cg-timeline">
 
-              <div class="crole">
-                <div class="crole-row">
-                  <span class="crole-title">Senior UI Software Engineer &nbsp;<span
-                      style="font-size:0.72rem;color:var(--faint);font-weight:300;font-style:italic;">↑ promoted</span></span>
-                  <span class="crole-date">Jan 2021 – Mar 2022</span>
-                </div>
-                <ul>
-                  <li>Drove Angular version migration to a modern stable release, refactoring legacy components and reducing
-                    UI bundle size and load times significantly.</li>
-                  <li>Enhanced mobile application UX with Ionic and RxJS; built comprehensive test suites validating component
-                    behaviour across platforms.</li>
-                  <li>Recognised for technical impact across backend and frontend — promoted after first year.</li>
-                </ul>
-                <div class="tag-row"><span class="tag">Angular</span><span class="tag">Ionic</span><span
-                    class="tag">RxJS</span><span class="tag">TypeScript</span><span class="tag">Git</span></div>
-              </div>
-
-              <div class="crole">
-                <div class="crole-row">
-                  <span class="crole-title">Software Engineer</span>
-                  <span class="crole-date">Dec 2019 – Nov 2020</span>
-                </div>
-                <ul>
-                  <li>Contributed to multiple internal and customer-facing .NET products, writing clean, maintainable C#
-                    across MVC layers.</li>
-                  <li>Implemented XSS and CSRF security hardening, closing critical vulnerabilities in production systems.</li>
-                  <li>Optimised stored procedures and SQL Server objects, improving backend response times on high-traffic
-                    endpoints.</li>
-                  <li>Migrated legacy jQuery and Bootstrap to modern stable versions, enabling compatibility with new product
-                    lines.</li>
-                </ul>
-                <div class="tag-row"><span class="tag">C#</span><span class="tag">.NET 4.5+</span><span
-                    class="tag">MVC</span><span class="tag">SQL Server</span><span class="tag">jQuery</span><span
-                    class="tag">Bootstrap</span><span class="tag">Git</span></div>
-              </div>
-
+          <div class="bcard">
+            <div class="bcard-head">
+              <span class="bcard-title">Senior Software Engineer</span>
+              <span class="bcard-company">Arajet · Santo Domingo, DO · Hybrid</span>
+              <span class="bcard-date">Feb 2025 – May 2025</span>
             </div>
+            <ul class="bcard-bullets">
+              <li>Boosted data processing 3× with Python pipelines, mentored 6+ developers in best practices.</li>
+              <li>Standardized development framework and architecture, contributing to the core of new.arajet.com.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">C#</span><span class="tag">React</span><span class="tag">RPA</span><span class="tag">AKS</span><span class="tag">Docker</span><span class="tag">Azure Devops</span><span class="tag">Git</span></div>
           </div>
-          <br>
-        </div>
 
-        <div class="job">
-          <div class="job-row"><span class="job-title">Software Engineer</span><span class="job-date">Aug 2017 – Oct
-              2019</span></div>
-          <p class="job-company">ABI Document Support Services · Remote · via NewTech</p>
-          <ul>
-            <li>Developed and maintained enterprise applications using C#, .NET MVC, and Angular with reactive
-              programming patterns.</li>
-            <li>Coordinated end-to-end delivery across design, development, testing, and deployment.</li>
-          </ul>
-          <div class="tag-row"><span class="tag">Angular</span><span class="tag">C#</span><span class="tag">.NET
-              MVC</span><span class="tag">SQL Server</span><span class="tag">Git</span></div>
-        </div>
-
-        <div class="job">
-          <div class="job-row"><span class="job-title">Full Stack Engineer</span><span class="job-date">Jan 2017 – Jun
-              2017</span></div>
-          <p class="job-company">MEDS Gravitas · Santo Domingo, DO</p>
-          <ul>
-            <li>Led POS integration with Odoo; built GraphQL APIs and real-time features for web and mobile clients.</li>
-          </ul>
-          <div class="tag-row"><span class="tag">Python</span><span class="tag">React</span><span
-              class="tag">GraphQL</span><span class="tag">Redis</span><span class="tag">MongoDB</span><span
-              class="tag">Git</span></div>
-        </div>
-
-        <div class="job">
-          <div class="job-row"><span class="job-title">Software Engineer</span><span class="job-date">Feb 2015 – Nov
-              2016</span></div>
-          <p class="job-company">Citi · Santo Domingo, DO · On-site</p>
-          <ul>
-            <li>Rewrote and optimised over 30 stored procedures and SQL Server jobs, reducing average transaction
-              processing time by ~45% through index tuning and query restructuring.</li>
-            <li>Migrated core transaction applications from synchronous blocking patterns to async/await, cutting UI
-              freeze time to near-zero for operators handling high-volume workflows.</li>
-            <li>Championed adoption of modern .NET patterns — conducted internal walkthroughs on async programming,
-              accelerating team-wide transition.</li>
-          </ul>
-          <div class="tag-row"><span class="tag">C#</span><span class="tag">WinForms</span><span class="tag">SQL
-              Server</span><span class="tag">async/await</span><span class="tag">.NET</span><span class="tag">Git</span>
+          <div class="bcard">
+            <div class="bcard-head">
+              <span class="bcard-title">Senior Software Engineer – (AI Consultant)</span>
+              <span class="bcard-company">GNS · Cali, Colombia · Remote · Contract</span>
+              <span class="bcard-date">Sep 2024 – Nov 2024</span>
+            </div>
+            <ul class="bcard-bullets">
+              <li>Designed full observability stack with Grafana, Loki and Prometheus, active Pipecat open source contributor.</li>
+              <li>Architected AI agent orchestration services using Python and FastAPI, integrating LLMs for intent detection.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Genesys Cloud</span><span class="tag">Grafana</span><span class="tag">Loki</span><span class="tag">Prometheus</span><span class="tag">Pipecat</span><span class="tag">BitBucket</span><span class="tag">Docker</span><span class="tag">Git</span></div>
           </div>
-        </div>
 
-        <div class="job">
-          <div class="job-row"><span class="job-title">Junior Software Developer</span><span class="job-date">Jan 2013 –
-              Dec 2014</span></div>
-          <p class="job-company">Contraloría General de la República Dominicana · Santo Domingo, DO · On-site</p>
-          <ul>
-            <li>Built and maintained internal government applications using C# and .NET, supporting financial control
-              and auditing workflows.</li>
-            <li>Wrote and optimised SQL Server stored procedures and queries for reporting and data management modules.</li>
-            <li>Developed WinForms interfaces for internal users, focusing on usability and reliability across
-              high-volume operations.</li>
-          </ul>
-          <div class="tag-row"><span class="tag">C#</span><span class="tag">WinForms</span><span class="tag">SQL
-              Server</span><span class="tag">.NET</span><span class="tag">Git</span></div>
-        </div>
+          <div class="bcard">
+            <div class="bcard-head">
+              <span class="bcard-title">Senior Software Engineer</span>
+              <span class="bcard-company">Crecer Lab · Santo Domingo, DO · Hybrid</span>
+              <span class="bcard-date">Mar 2024 – Jul 2024</span>
+            </div>
+            <ul class="bcard-bullets">
+              <li>Led backend architecture design for core product features focused on performance and scalability.</li>
+              <li>Mentored junior developers, established code review standards and CI/CD workflows.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">React</span><span class="tag">Docker</span><span class="tag">Jenkins</span><span class="tag">SQL</span><span class="tag">GitHub</span><span class="tag">Git</span></div>
+          </div>
 
+          <div class="bcard">
+            <div class="bcard-head">
+              <span class="bcard-title">Senior Software Engineer</span>
+              <span class="bcard-company">Antillean Software (AS) · Santo Domingo, DO · Hybrid</span>
+              <span class="bcard-date">May 2023 – Feb 2024</span>
+            </div>
+            <ul class="bcard-bullets">
+              <li>Led migration from legacy monoliths to microservices using FastAPI/Alembic, spearheaded AWS deployments.</li>
+              <li>Managed PostgreSQL migrations and centralised log management with MongoDB.</li>
+              <li>Enhanced UI design and performance across web applications.</li>
+              <li>Spearheaded microservice architecture design and provided mentorship to fellow developers.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Django</span><span class="tag">Flask</span><span class="tag">Strawberry</span><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">Alembic</span><span class="tag">Hasura</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">AWS</span><span class="tag">Git</span></div>
+          </div>
+
+          <div class="bcard">
+            <div class="bcard-head">
+              <span class="bcard-title">Senior Software Engineer</span>
+              <span class="bcard-company">EDFI Alliance · Austin, TX · Remote</span>
+              <span class="bcard-date">May 2022 – Mar 2023</span>
+            </div>
+            <ul class="bcard-bullets">
+              <li>Led development of the API to AMT Data Lake  an open source ETL pipeline that extracts all Ed Fi ODS API data into JSON and Parquet, shaped to match the Analytics Middle Tier for Power BI consumption.</li>
+              <li>Orchestrated parallel data ingestion with Dagster, leveraging configurable multi CPU processing for high throughput API pagination.</li>
+              <li>Implemented descriptor mapping engine to normalise Ed Fi ODS enumeration variability across installations, enabling consistent AMT view filtering.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">C#</span><span class="tag">Dagster</span><span class="tag">GitHub</span><span class="tag">PostgreSQL</span><span class="tag">PL/SQL</span><span class="tag">Power BI</span><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Bash</span><span class="tag">Jupyter</span><span class="tag">Git</span></div>
+          </div>
+
+          <div class="bcard">
+            <div class="bcard-head">
+              <span class="bcard-title">Software Engineer → Senior UI Software Engineer <span class="bcard-promoted">↑ promoted</span></span>
+              <span class="bcard-company">CBORD · Ithaca, NY · Remote · via Quantum</span>
+              <span class="bcard-date">Dec 2019 – Mar 2022</span>
+            </div>
+            <ul class="bcard-bullets">
+              <li>Drove Angular version migration, refactoring legacy components and reducing UI bundle size.</li>
+              <li>Enhanced mobile application UX with Ionic and RxJS, built comprehensive test suites.</li>
+              <li>Fixed discrepancies and created tests to validate behaviour of functions and components.</li>
+              <li>Migrated jQuery and Bootstrap to stable modern versions for use in new products.</li>
+              <li>Contributed to multiple .NET products, writing clean C# across MVC layers.</li>
+              <li>Implemented XSS and CSRF security hardening, closing critical vulnerabilities.</li>
+              <li>Optimised stored procedures and backend calls, eliminating obsolete methods.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Angular</span><span class="tag">Ionic</span><span class="tag">RxJS</span><span class="tag">Sass</span><span class="tag">TypeScript</span><span class="tag">C#</span><span class="tag">.NET 4.5+</span><span class="tag">MVC</span><span class="tag">SQL Server</span><span class="tag">AWS</span><span class="tag">BitBucket</span><span class="tag">jQuery</span><span class="tag">Git</span></div>
+          </div>
+
+          <div class="bcard">
+            <div class="bcard-head">
+              <span class="bcard-title">Software Engineer</span>
+              <span class="bcard-company">ABI Document Support Services · Phoenix, AZ · Remote · via NewTech</span>
+              <span class="bcard-date">Aug 2017 – Oct 2019</span>
+            </div>
+            <ul class="bcard-bullets">
+              <li>Developed enterprise applications using C#, .NET MVC, and Angular.</li>
+              <li>Coordinated end to end delivery across design, development, testing, and deployment.</li>
+              <li>Wrote clean, well tested code with efficient debugging, ensuring timely project delivery.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Angular</span><span class="tag">C#</span><span class="tag">.NET MVC</span><span class="tag">SQL Server</span><span class="tag">Reactive Programming</span><span class="tag">Azure Devops</span><span class="tag">Git</span></div>
+          </div>
+
+          <div class="bcard">
+            <div class="bcard-head">
+              <span class="bcard-title">Full Stack Engineer</span>
+              <span class="bcard-company">MEDS Gravitas · Santo Domingo, DO</span>
+              <span class="bcard-date">Jan 2017 – Jun 2017</span>
+            </div>
+            <ul class="bcard-bullets">
+              <li>Led POS integration with Odoo, built GraphQL APIs and real time features.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">Node.js</span><span class="tag">React</span><span class="tag">GraphQL</span><span class="tag">Redis</span><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">Pytest</span><span class="tag">GitHub</span><span class="tag">Git</span></div>
+          </div>
+
+          <div class="bcard">
+            <div class="bcard-head">
+              <span class="bcard-title">Software Engineer</span>
+              <span class="bcard-company">Citibank · Santo Domingo, DO · On-site</span>
+              <span class="bcard-date">Feb 2015 – Nov 2016</span>
+            </div>
+            <ul class="bcard-bullets">
+              <li>Rewrote 30+ stored procedures, functions, and jobs cutting transaction time ~45%, migrated apps to async/await.</li>
+              <li>Automated processes from application layer to server, significantly improving data indexing performance.</li>
+              <li>Drove team adoption of modern .NET patterns and async/await across the codebase.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">C#</span><span class="tag">WinForms</span><span class="tag">SQL Server</span><span class="tag">async/await</span><span class="tag">.NET</span><span class="tag">Azure Devops</span><span class="tag">Git</span></div>
+          </div>
+
+          <div class="bcard">
+            <div class="bcard-head">
+              <span class="bcard-title">Junior Software Developer</span>
+              <span class="bcard-company">Contraloría General de la República Dominicana · On-site</span>
+              <span class="bcard-date">Jan 2013 – Dec 2014</span>
+            </div>
+            <ul class="bcard-bullets">
+              <li>Built internal government apps in C#/.NET supporting financial control and auditing workflows.</li>
+              <li>Wrote and optimised SQL Server stored procedures for reporting modules.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">C#</span><span class="tag">WinForms</span><span class="tag">SQL Server</span><span class="tag">.NET</span><span class="tag">Git</span></div>
+          </div>
+
+        </div>
       </section>
 
       <section>
@@ -1491,7 +1468,7 @@
         </div>
         <div class="edu">
           <div>
-            <p class="edu-degree">Associate's Degree — Software Developer</p>
+            <p class="edu-degree">Associate's Degree  Software Developer</p>
             <p class="edu-school">ITLA · Santo Domingo, DO</p>
           </div>
           <span class="job-date">2010 – 2014</span>
@@ -1501,12 +1478,13 @@
       <section>
         <p class="section-label">Skills</p>
         <div class="skills-grid">
-          <span class="sk-label">Languages</span><span class="sk-value">Python, Go, C/C++/C#, JavaScript</span>
-          <span class="sk-label">Frameworks</span><span class="sk-value">FastAPI, Django, React, Node.js, .NET MVC</span>
-          <span class="sk-label">AI / ML</span><span class="sk-value">LLM APIs, Pipecat, Genesys Cloud AI</span>
+          <span class="sk-label">Languages</span><span class="sk-value">C#, TypeScript, Golang, Python</span>
+          <span class="sk-label">Frameworks</span><span class="sk-value">FastAPI, React, React Native, Node.js, .NET MVC</span>
+          <span class="sk-label">AI / ML</span><span class="sk-value">LLM APIs, Pipecat, Genesys Cloud AI, TensorFlow</span>
           <span class="sk-label">Observability</span><span class="sk-value">Grafana, Loki, Prometheus</span>
           <span class="sk-label">Databases</span><span class="sk-value">PostgreSQL, MongoDB, Redis, SQL Server</span>
-          <span class="sk-label">Infra</span><span class="sk-value">Docker, Kubernetes, AWS, CI/CD, Git, Bash</span>
+          <span class="sk-label">Infra</span><span class="sk-value">Docker, AWS, CI/CD, Git, Bash</span>
+          <span class="sk-label">Tools</span><span class="sk-value">Linux, Bash scripting, gRPC, REST APIs, WebSockets</span>
           <span class="sk-label">Spoken</span><span class="sk-value">Spanish (native) · Portuguese (conversational)</span>
         </div>
       </section>
@@ -1514,91 +1492,74 @@
       <section>
         <p class="section-label">Certifications</p>
         <div class="cert-list">
-
           <div class="cert">
             <div class="cert-left">
               <div class="cert-name">gRPC [Golang] Master Class: Build Modern API &amp; Microservices</div>
               <div class="cert-issuer">Udemy · Issued Aug 2025</div>
-              <div class="cert-tags"><span class="tag">Go</span><span class="tag">gRPC</span><span class="tag">MongoDB</span></div>
+              <div class="cert-tags"><span class="tag">Golang</span><span class="tag">gRPC</span><span class="tag">MongoDB</span></div>
             </div>
-            <a class="cert-link" href="https://www.udemy.com/certificate/UC-6a43225c-b42f-4b19-aeef-f94a9da0c5a7/"
-              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
-                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-6a43225c-b42f-4b19-aeef-f94a9da0c5a7/" target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons" style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
           </div>
-
           <div class="cert">
             <div class="cert-left">
               <div class="cert-name">Go Bootcamp: Master Golang with 1000+ Exercises and Projects</div>
               <div class="cert-issuer">Udemy · Issued Feb 2025</div>
-              <div class="cert-tags"><span class="tag">Go</span></div>
+              <div class="cert-tags"><span class="tag">Golang</span></div>
             </div>
-            <a class="cert-link" href="https://www.udemy.com/certificate/UC-689d65ef-35f7-43f0-8f3c-3d13a61b8254/"
-              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
-                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-689d65ef-35f7-43f0-8f3c-3d13a61b8254/" target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons" style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
           </div>
-
           <div class="cert">
             <div class="cert-left">
               <div class="cert-name">AWS Certified Machine Learning Specialty 2025 – Hands On!</div>
               <div class="cert-issuer">Udemy · Issued Jan 2025</div>
-              <div class="cert-tags"><span class="tag">Python</span><span class="tag">AWS</span><span
-                  class="tag">Machine Learning</span><span class="tag">TensorFlow</span></div>
+              <div class="cert-tags"><span class="tag">Python</span><span class="tag">AWS</span><span class="tag">Machine Learning</span><span class="tag">TensorFlow</span></div>
             </div>
-            <a class="cert-link" href="https://www.udemy.com/certificate/UC-54c7d82f-bd48-4840-805c-e264ea7b1a74/"
-              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
-                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-54c7d82f-bd48-4840-805c-e264ea7b1a74/" target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons" style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
           </div>
-
           <div class="cert">
             <div class="cert-left">
               <div class="cert-name">Data Science: Deep Learning and Neural Networks in Python</div>
               <div class="cert-issuer">Udemy · Issued May 2023</div>
-              <div class="cert-tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span
-                  class="tag">Scikit-Learn</span></div>
+              <div class="cert-tags"><span class="tag">Python</span><span class="tag">TensorFlow</span></div>
             </div>
-            <a class="cert-link" href="https://www.udemy.com/certificate/UC-b5392e07-7e3e-4dd4-b7e3-8f2214b35aef/"
-              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
-                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-b5392e07-7e3e-4dd4-b7e3-8f2214b35aef/" target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons" style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
           </div>
-
           <div class="cert">
             <div class="cert-left">
               <div class="cert-name">Machine Learning, Data Science &amp; AI Engineering with Python</div>
               <div class="cert-issuer">Udemy · Issued Jan 2023</div>
               <div class="cert-tags"><span class="tag">TensorFlow</span><span class="tag">Python</span><span class="tag">GPT</span></div>
             </div>
-            <a class="cert-link" href="https://www.udemy.com/certificate/UC-687c9338-0980-4931-b280-cde686a5e946/"
-              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
-                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-687c9338-0980-4931-b280-cde686a5e946/" target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons" style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
           </div>
-
+          <div class="cert">
+            <div class="cert-left">
+              <div class="cert-name">Introduction to Redis for AI</div>
+              <div class="cert-issuer">University.redis.io · Issued Jan 2025</div>
+              <div class="cert-tags"><span class="tag">Redis</span><span class="tag">AI</span></div>
+            </div>
+            <a class="cert-link" href="https://cdn.flockjay.com/wmp7b5kkoudmhi-certificates-tupfhfedse1l9w.pdf?Expires=1775768232&Signature=leIha5Sq856Yo56t86u0v6LbAhrwqCQHAUm2ylFaY01AyeKfPW3iULiXrvPJdwGgpMFmc~2~FKcyZWSABS~iJfEtIoGGg3pMEj7KMqCCzPOCchLtybIu3N-~Cc7Jei0i09aSf~wbSbHx4~CSg6b86-yS3jRW-dY1uocG8Uq4T2ZQAY-R1o8MaQ0TNfRGxzh5WFlhKGZu3G1jWbMSFLp7CKs3MtGLaxmdSltDHT63s7I33NoMvJek-5Uxx9uSOUtbUHISOPlFTq9ClQAe9zNoYsEDcwwDb2gPBhnkq5uM717yVvqxRDFB3BTBQL6RQVi-Bs0mdV1oEzLvTNH7qhcP4w__&Key-Pair-Id=K2Q8P6RBFZ27L1" target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons" style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+          </div>
           <div class="cert">
             <div class="cert-left">
               <div class="cert-name">Next.js 15 &amp; React – The Complete Guide</div>
               <div class="cert-issuer">Udemy · Issued Jun 2022</div>
               <div class="cert-tags"><span class="tag">React.js</span><span class="tag">TypeScript</span><span class="tag">Next.js</span></div>
             </div>
-            <a class="cert-link" href="https://www.udemy.com/certificate/UC-aa745aec-ceb5-42c6-9a8f-71dd538d281c/"
-              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
-                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-aa745aec-ceb5-42c6-9a8f-71dd538d281c/" target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons" style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
           </div>
-
           <div class="cert">
             <div class="cert-left">
               <div class="cert-name">React – The Complete Guide 2025 (incl. Next.js, Redux)</div>
               <div class="cert-issuer">Udemy · Issued Apr 2022</div>
-              <div class="cert-tags"><span class="tag">React.js</span><span class="tag">Redux.js</span><span
-                  class="tag">JavaScript</span><span class="tag">HTML5</span><span class="tag">CSS</span></div>
+              <div class="cert-tags"><span class="tag">React.js</span><span class="tag">Redux.js</span><span class="tag">JavaScript</span><span class="tag">HTML5</span><span class="tag">CSS</span></div>
             </div>
-            <a class="cert-link" href="https://www.udemy.com/certificate/UC-a095dd20-2d7d-45eb-b816-8f6bc8018b65/"
-              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
-                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-a095dd20-2d7d-45eb-b816-8f6bc8018b65/" target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons" style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
           </div>
-
         </div>
       </section>
 
-      <footer>© <span id="footer-year"></span> Jeffrey Sánchez &nbsp;·&nbsp; <span class="vdot"></span> <span id="v-unique">—</span> unique &nbsp;·&nbsp; <span id="v-total">—</span> visits</footer>
+      <footer>© <span id="footer-year"></span> Jeffrey Sánchez &nbsp;·&nbsp; <span class="vdot"></span> <span id="v-unique"></span> unique &nbsp;·&nbsp; <span id="v-total"></span> visits</footer>
     </div>
   </div>
 
@@ -1609,167 +1570,142 @@
           <span class="tb-dot red"></span>
           <span class="tb-dot yellow"></span>
           <span class="tb-dot green"></span>
-          <span class="tb-title">jeffrey@web — zsh</span>
+          <span class="tb-title">jeffrey@2606:50c0:8002::153  zsh</span>
         </div>
         <div class="terminal-body">
-          <span class="tl-line1"><span class="tl-user">jegasape</span><span class="tl-at">@</span><span class="tl-host">web</span><span class="tl-colon">:</span><span class="tl-path">~</span><span class="tl-prompt"> $</span> <span class="tl-cmd">whoami</span></span>
+          <span class="tl-line1"><span class="tl-user">jegasape</span><span class="tl-at">@</span><span class="tl-host">2606:50c0:8002::153</span><span class="tl-colon">:</span><span class="tl-path">~</span><span class="tl-prompt"> $</span> <span class="tl-cmd">whoami</span></span>
           <span class="tl-line2"><span class="tl-arrow">▸</span> <span id="tagline-text"></span><span id="tagline-cursor">▋</span></span>
         </div>
       </div>
       <div class="filter-block">
         <p class="filter-label">Filter by type:</p>
         <div class="pills" id="ft">
-          <span class="pill on" data-f="all">All</span><span class="pill" data-f="Backend">Backend</span><span
-            class="pill" data-f="Frontend">Frontend</span><span class="pill" data-f="AI">AI</span><span class="pill"
-            data-f="Tool">Tool</span>
+          <span class="pill on" data-f="all">All</span><span class="pill" data-f="Backend">Backend</span><span class="pill" data-f="Frontend">Frontend</span><span class="pill" data-f="AI">AI</span><span class="pill" data-f="Tool">Tool</span>
         </div>
         <p class="filter-label">Filter by language:</p>
         <div class="pills" id="fl">
-          <span class="pill on" data-f="all">All</span><span class="pill" data-f="Go">Go</span><span class="pill"
-            data-f="Python">Python</span><span class="pill" data-f="C#">C#</span><span class="pill" data-f="TypeScript">TypeScript</span><span
-            class="pill" data-f="Shell">Shell</span>
+          <span class="pill on" data-f="all">All</span><span class="pill" data-f="Go">Golang</span><span class="pill" data-f="Python">Python</span><span class="pill" data-f="C#">C#</span><span class="pill" data-f="TypeScript">TypeScript</span><span class="pill" data-f="Shell">Shell</span>
         </div>
       </div>
       <div class="proj-grid" id="pgrid">
         <div class="pcard" data-t="AI,Backend" data-l="Python">
-          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag cat">Backend</span><span
-              class="pcard-tag tech">Python</span><span class="pcard-tag tech">FastAPI</span><span
-              class="pcard-tag tech">Pipecat</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Python</span><span class="pcard-tag tech">FastAPI</span><span class="pcard-tag tech">Pipecat</span></div>
           <h3>Real-time Voice AI Agent</h3>
           <p>AI voice agent pipeline with Pipecat and FastAPI, integrating LLMs for real-time speech-to-intent workflows.</p>
           <a href="https://github.com/jegasape">github.com/jegasape</a>
         </div>
         <div class="pcard" data-t="AI" data-l="Python">
-          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span
-              class="pcard-tag tech">OpenCV</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span class="pcard-tag tech">OpenCV</span></div>
           <h3>Real-time Facial Recognition</h3>
-          <p>Real-time facial recognition and identity authentication using OpenCV — custom feature extraction pipeline.</p>
+          <p>Real-time facial recognition and identity authentication using OpenCV.</p>
           <a href="https://github.com/jegasape/face-recognition">github.com/jegasape/face-recognition</a>
         </div>
         <div class="pcard" data-t="Backend" data-l="Go">
-          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Go</span><span
-              class="pcard-tag tech">PostgreSQL</span><span class="pcard-tag tech">Docker</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Golang</span><span class="pcard-tag tech">PostgreSQL</span><span class="pcard-tag tech">Docker</span></div>
           <h3>High-performance Go Services</h3>
-          <p>Core backend services for Biget.do — ~40% latency reduction and ~35% throughput improvement using goroutine pipelines.</p>
+          <p>Core backend services for a confidential client  ~35% throughput improvement using goroutine pipelines.</p>
           <a href="https://github.com/jegasape">github.com/jegasape</a>
         </div>
         <div class="pcard" data-t="Tool" data-l="C#">
-          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">C#</span><span
-              class="pcard-tag tech">.NET</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">C#</span><span class="pcard-tag tech">.NET</span></div>
           <h3>Dominican Lottery Results Scraper</h3>
-          <p>Automated extraction and parsing of Dominican lottery results with precise digit-retrieval algorithms and a clean CLI interface.</p>
+          <p>Automated extraction and parsing of Dominican lottery results with precise digit-retrieval algorithms.</p>
           <a href="https://github.com/jegasape/dominican-lotteries">github.com/jegasape/dominican-lotteries</a>
         </div>
         <div class="pcard" data-t="Backend,AI" data-l="Python">
-          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag cat">AI</span><span
-              class="pcard-tag tech">Python</span><span class="pcard-tag tech">Dagster</span><span
-              class="pcard-tag tech">AWS</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span class="pcard-tag tech">Dagster</span><span class="pcard-tag tech">AWS</span></div>
           <h3>ETL Data Lake Pipeline</h3>
-          <p>End-to-end ETL pipeline using Dagster on AWS, surfacing data through Power BI dashboards for customer analytics.</p>
+          <p>End-to-end ETL pipeline using Dagster on AWS, surfacing data through Power BI dashboards.</p>
           <a href="https://github.com/jegasape">github.com/jegasape</a>
         </div>
         <div class="pcard" data-t="Tool" data-l="Python">
-          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Grafana</span><span
-              class="pcard-tag tech">Loki</span><span class="pcard-tag tech">Prometheus</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Grafana</span><span class="pcard-tag tech">Loki</span><span class="pcard-tag tech">Prometheus</span></div>
           <h3>Microservices Observability Stack</h3>
-          <p>Production-grade observability setup — Grafana dashboards, Loki log aggregation, and Prometheus metrics.</p>
+          <p>Production-grade observability  Grafana dashboards, Loki log aggregation, Prometheus metrics.</p>
           <a href="https://github.com/jegasape">github.com/jegasape</a>
         </div>
         <div class="pcard" data-t="Tool" data-l="Go">
-          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
-              class="pcard-tag tech">Concurrency</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Golang</span><span class="pcard-tag tech">Concurrency</span></div>
           <h3>Concurrent Wallpaper Downloader</h3>
-          <p>Fast CLI tool to download images and wallpapers concurrently with fine-grained control. Lightweight and built for speed.</p>
+          <p>Fast CLI tool to download images concurrently with fine-grained control.</p>
           <a href="https://github.com/jegasape/goget-wallpaper">github.com/jegasape/goget-wallpaper</a>
         </div>
         <div class="pcard" data-t="Tool" data-l="Go">
-          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
-              class="pcard-tag tech">Finance</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Golang</span><span class="pcard-tag tech">Finance</span></div>
           <h3>Real-time Stock Market Tracker</h3>
-          <p>Real-time S&amp;P 500 and stock exchange tracker with market movements and trends. Built with the Dominican Republic market in mind.</p>
+          <p>Real-time S&amp;P 500 and stock exchange tracker with market movements and trends.</p>
           <a href="https://github.com/jegasape/spirex">github.com/jegasape/spirex</a>
         </div>
         <div class="pcard" data-t="Tool" data-l="Go">
-          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
-              class="pcard-tag tech">Concurrency</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Golang</span><span class="pcard-tag tech">Concurrency</span></div>
           <h3>Go Concurrent Progress Bar</h3>
-          <p>High-speed concurrent progress tracking for Go pipelines — inspired by Python's tqdm, for batch and parallel workloads.</p>
+          <p>High-speed concurrent progress tracking for Golang pipelines  inspired by Python's tqdm.</p>
           <a href="https://github.com/jegasape/TQDMK">github.com/jegasape/TQDMK</a>
         </div>
         <div class="pcard" data-t="Tool" data-l="Go">
-          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
-              class="pcard-tag tech">Concurrency</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Golang</span><span class="pcard-tag tech">Concurrency</span></div>
           <h3>Channel-based Progress Tracker</h3>
-          <p>Concurrent Go utility for tracking progress across parallel tasks — channel-native pipeline integration.</p>
+          <p>Concurrent Golang utility for tracking progress across parallel tasks.</p>
           <a href="https://github.com/jegasape/TQDMC">github.com/jegasape/TQDMC</a>
         </div>
         <div class="pcard" data-t="Tool" data-l="Go">
-          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
-              class="pcard-tag tech">Security</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Golang</span><span class="pcard-tag tech">Security</span></div>
           <h3>AES-256 Encryption Library</h3>
-          <p>Clean, reusable Go library for AES-256 symmetric encryption — designed to drop into any Go application with minimal setup.</p>
+          <p>Clean, reusable Golang library for AES-256 symmetric encryption.</p>
           <a href="https://github.com/jegasape/aes256">github.com/jegasape/aes256</a>
         </div>
         <div class="pcard" data-t="Tool" data-l="Go">
-          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
-              class="pcard-tag tech">Memory</span></div>
-          <h3>Weak Pointer for Go</h3>
-          <p>Go library implementing weak pointer semantics — references that don't prevent garbage collection, useful for caching.</p>
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Golang</span><span class="pcard-tag tech">Memory</span></div>
+          <h3>Weak Pointer for Golang</h3>
+          <p>Golang library implementing weak pointer semantics  useful for caching.</p>
           <a href="https://github.com/jegasape/weakpointer">github.com/jegasape/weakpointer</a>
         </div>
         <div class="pcard" data-t="Backend" data-l="Go">
-          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Go</span><span
-              class="pcard-tag tech">HTTP</span><span class="pcard-tag tech">Fork</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Golang</span><span class="pcard-tag tech">HTTP</span><span class="pcard-tag tech">Fork</span></div>
           <h3>High-performance Go HTTP Framework</h3>
-          <p>Fork of CloudWeGo's Hertz — a high-performance, extensible Go HTTP framework for microservices.</p>
+          <p>Fork of CloudWeGo's Hertz  extensible Go HTTP framework for microservices.</p>
           <a href="https://github.com/jegasape/hertz">github.com/jegasape/hertz</a>
         </div>
         <div class="pcard" data-t="Backend" data-l="Go">
-          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Go</span><span
-              class="pcard-tag tech">RPC</span><span class="pcard-tag tech">Fork</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Golang</span><span class="pcard-tag tech">RPC</span><span class="pcard-tag tech">Fork</span></div>
           <h3>High-performance Go RPC Framework</h3>
-          <p>Fork of CloudWeGo's Kitex — a low-latency, strongly-extensible Go RPC framework for microservice communication.</p>
+          <p>Fork of CloudWeGo's Kitex  low-latency Go RPC framework.</p>
           <a href="https://github.com/jegasape/kitex">github.com/jegasape/kitex</a>
         </div>
         <div class="pcard" data-t="Backend" data-l="Go">
-          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Go</span><span
-              class="pcard-tag tech">WebSockets</span><span class="pcard-tag tech">Fork</span></div>
-          <h3>1M WebSocket Connections in Go</h3>
-          <p>Exploration of handling 1 million simultaneous WebSocket connections in Go — concurrency stress-test and benchmark.</p>
+          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Golang</span><span class="pcard-tag tech">WebSockets</span><span class="pcard-tag tech">Fork</span></div>
+          <h3>1M WebSocket Connections in Golang</h3>
+          <p>Handling 1 million simultaneous WebSocket connections  concurrency stress-test.</p>
           <a href="https://github.com/jegasape/1m-go-websockets">github.com/jegasape/1m-go-websockets</a>
         </div>
         <div class="pcard" data-t="AI" data-l="Python">
-          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span
-              class="pcard-tag tech">RAG</span><span class="pcard-tag tech">Fork</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span class="pcard-tag tech">RAG</span><span class="pcard-tag tech">Fork</span></div>
           <h3>Adaptive RAG Agent Framework</h3>
-          <p>Fork of an adaptive self-directed RAG framework for intelligent agents — explored for production AI pipeline design.</p>
+          <p>Fork of an adaptive self-directed RAG framework for intelligent agents.</p>
           <a href="https://github.com/jegasape/advanced-rag-flow">github.com/jegasape/advanced-rag-flow</a>
         </div>
         <div class="pcard" data-t="AI" data-l="Python">
-          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span
-              class="pcard-tag tech">LLM</span><span class="pcard-tag tech">Fork</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span class="pcard-tag tech">LLM</span><span class="pcard-tag tech">Fork</span></div>
           <h3>Reasoning LLM via Reinforcement Learning</h3>
-          <p>Fork of DeepSeek-R1 — a reasoning-focused LLM trained via RL, for agent reasoning chains and task planning.</p>
+          <p>Fork of DeepSeek-R1  reasoning-focused LLM trained via RL.</p>
           <a href="https://github.com/jegasape/DeepSeek-R1">github.com/jegasape/DeepSeek-R1</a>
         </div>
         <div class="pcard" data-t="AI" data-l="Python">
-          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span
-              class="pcard-tag tech">LLM</span><span class="pcard-tag tech">Fork</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span class="pcard-tag tech">LLM</span><span class="pcard-tag tech">Fork</span></div>
           <h3>Frontier Open-source LLM</h3>
-          <p>Fork of DeepSeek-V3. Used for local inference experiments and evaluating model capabilities for AI features.</p>
+          <p>Fork of DeepSeek-V3 for local inference experiments.</p>
           <a href="https://github.com/jegasape/DeepSeek-V3">github.com/jegasape/DeepSeek-V3</a>
         </div>
         <div class="pcard" data-t="Frontend" data-l="TypeScript">
           <div class="pcard-tags"><span class="pcard-tag cat">Frontend</span><span class="pcard-tag tech">TypeScript</span></div>
           <h3>Flying App</h3>
-          <p>TypeScript frontend application — currently in active development.</p>
+          <p>TypeScript frontend application  currently in active development.</p>
           <a href="https://github.com/jegasape/flying-app">github.com/jegasape/flying-app</a>
         </div>
         <div class="pcard" data-t="Tool" data-l="Shell">
-          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Shell</span><span
-              class="pcard-tag tech">Linux</span></div>
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Shell</span><span class="pcard-tag tech">Linux</span></div>
           <h3>Custom Desktop Environment Setup</h3>
-          <p>Personal dotfiles with window manager configs, kitty terminal themes, and a guide on building a custom Linux desktop.</p>
+          <p>Personal dotfiles with window manager configs and custom Linux desktop guide.</p>
           <a href="https://github.com/jegasape/dotfiles">github.com/jegasape/dotfiles</a>
         </div>
       </div>
@@ -1814,20 +1750,11 @@
           <div class="litem"><span class="lnum">27</span><span class="ltext done">Get into competitive programming</span></div>
           <div class="litem"><span class="lnum">28</span><span class="ltext">Ship a side project with 1000+ users</span></div>
           <div class="litem"><span class="lnum">29</span><span class="ltext">Write a technical blog</span></div>
-          <div class="litem"><span class="lnum">30</span><span class="ltext done">Learn Portuguese fluently</span></div>
+          <div class="litem"><span class="lnum done">30</span><span class="ltext done">Learn Portuguese fluently</span></div>
           <div class="litem"><span class="lnum">31</span><span class="ltext">Mentor someone into their first dev job</span></div>
           <div class="litem"><span class="lnum">32</span><span class="ltext">Visit a jungle</span></div>
         </div>
       </div>
-      <footer>© <span id="footer-year"></span> Jeffrey Sánchez</footer>
-    </div>
-  </div>
-
-  <div id="view-pokedesk" class="view">
-    <div class="page-wide">
-      <h2 class="page-h1">Hall of Legends</h2>
-      <p class="pokedesk-sub">The strongest creatures ever to exist. No weaklings allowed.</p>
-      <div class="poke-grid" id="poke-grid"></div>
       <footer>© <span id="footer-year"></span> Jeffrey Sánchez</footer>
     </div>
   </div>
@@ -1887,87 +1814,10 @@
       setTheme(!document.documentElement.classList.contains('light'));
     });
 
-    const CDN = 'https://img.pokemondb.net/sprites/home/normal/';
-
-    const POKEMON = [
-      {rank: 1, img: 'eternatus-eternamax', name: 'Eternatus Eternamax', gen: 'Gen VIII', types: ['poison', 'dragon'], hp: 255, atk: 115, def: 250, spa: 125, spd: 250, spe: 130},
-      {rank: 2, img: 'rayquaza-mega', name: 'Mega Rayquaza', gen: 'Gen VI', types: ['dragon', 'flying'], hp: 105, atk: 180, def: 100, spa: 180, spd: 100, spe: 115},
-      {rank: 3, img: 'mewtwo-mega-x', name: 'Mega Mewtwo X', gen: 'Gen VI', types: ['psychic', 'fighting'], hp: 106, atk: 190, def: 100, spa: 154, spd: 100, spe: 130},
-      {rank: 4, img: 'mewtwo-mega-y', name: 'Mega Mewtwo Y', gen: 'Gen VI', types: ['psychic'], hp: 106, atk: 150, def: 70, spa: 194, spd: 120, spe: 140},
-      {rank: 5, img: 'calyrex-shadow-rider', name: 'Calyrex Shadow', gen: 'Gen VIII', types: ['psychic', 'ghost'], hp: 100, atk: 85, def: 80, spa: 165, spd: 100, spe: 150},
-      {rank: 6, img: 'necrozma-ultra', name: 'Necrozma Ultra', gen: 'Gen VII', types: ['psychic', 'dragon'], hp: 97, atk: 167, def: 97, spa: 167, spd: 97, spe: 129},
-      {rank: 7, img: 'zacian-crowned', name: 'Zacian Crowned', gen: 'Gen VIII', types: ['fairy', 'steel'], hp: 92, atk: 170, def: 115, spa: 80, spd: 115, spe: 148},
-      {rank: 8, img: 'zamazenta-crowned', name: 'Zamazenta Crowned', gen: 'Gen VIII', types: ['fighting', 'steel'], hp: 92, atk: 130, def: 145, spa: 80, spd: 145, spe: 128},
-      {rank: 9, img: 'zygarde-complete', name: 'Zygarde Completo', gen: 'Gen VI', types: ['dragon', 'ground'], hp: 216, atk: 100, def: 121, spa: 91, spd: 95, spe: 85},
-      {rank: 10, img: 'arceus', name: 'Arceus', gen: 'Gen IV', types: ['normal'], hp: 120, atk: 120, def: 120, spa: 120, spd: 120, spe: 120},
-      {rank: 11, img: 'mewtwo', name: 'Mewtwo', gen: 'Gen I', types: ['psychic'], hp: 106, atk: 110, def: 90, spa: 154, spd: 90, spe: 130},
-      {rank: 12, img: 'rayquaza', name: 'Rayquaza', gen: 'Gen III', types: ['dragon', 'flying'], hp: 105, atk: 150, def: 90, spa: 150, spd: 90, spe: 95},
-      {rank: 13, img: 'dialga', name: 'Dialga', gen: 'Gen IV', types: ['steel', 'dragon'], hp: 100, atk: 120, def: 120, spa: 150, spd: 100, spe: 90},
-      {rank: 14, img: 'palkia', name: 'Palkia', gen: 'Gen IV', types: ['water', 'dragon'], hp: 90, atk: 120, def: 100, spa: 150, spd: 120, spe: 100},
-      {rank: 15, img: 'giratina-origin', name: 'Giratina', gen: 'Gen IV', types: ['ghost', 'dragon'], hp: 150, atk: 100, def: 120, spa: 100, spd: 120, spe: 90},
-      {rank: 16, img: 'lugia', name: 'Lugia', gen: 'Gen II', types: ['psychic', 'flying'], hp: 106, atk: 90, def: 130, spa: 90, spd: 154, spe: 110},
-      {rank: 17, img: 'ho-oh', name: 'Ho-Oh', gen: 'Gen II', types: ['fire', 'flying'], hp: 106, atk: 130, def: 90, spa: 110, spd: 154, spe: 90},
-      {rank: 18, img: 'xerneas', name: 'Xerneas', gen: 'Gen VI', types: ['fairy'], hp: 126, atk: 131, def: 95, spa: 131, spd: 98, spe: 99},
-      {rank: 19, img: 'yveltal', name: 'Yveltal', gen: 'Gen VI', types: ['dark', 'flying'], hp: 126, atk: 131, def: 95, spa: 131, spd: 98, spe: 99},
-      {rank: 20, img: 'kyogre', name: 'Kyogre', gen: 'Gen III', types: ['water'], hp: 100, atk: 100, def: 90, spa: 150, spd: 140, spe: 90},
-    ];
-    POKEMON.forEach(p => { p.bst = p.hp + p.atk + p.def + p.spa + p.spd + p.spe; });
-
-    const STATS = [
-      {key: 'hp', label: 'HP', cls: 'bar-hp'},
-      {key: 'atk', label: 'ATK', cls: 'bar-atk'},
-      {key: 'def', label: 'DEF', cls: 'bar-def'},
-      {key: 'spa', label: 'SpA', cls: 'bar-spa'},
-      {key: 'spd', label: 'SpD', cls: 'bar-spd'},
-      {key: 'spe', label: 'SPE', cls: 'bar-spe'},
-    ];
-    const MAX = 255;
-
-    const BALL = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f0f0f0' stroke='%23bbb' stroke-width='4'/%3E%3Cpath d='M4 50h92' stroke='%23bbb' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='14' fill='white' stroke='%23bbb' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='6' fill='%23bbb'/%3E%3Cpath d='M6 44 Q50 2 94 44' fill='%23e55' opacity='.4'/%3E%3C/svg%3E";
-
-    function onImgError(el) {
-      el.onerror = null;
-      el.src = BALL;
-      el.style.opacity = '0.5';
-      el.style.imageRendering = 'auto';
-    }
-
-    function buildCard(p) {
-      const typeHtml = p.types.map(t => `<span class="pk-type t-${t}">${t}</span>`).join('');
-      const statRows = STATS.map(s => {
-        const pct = Math.round((p[s.key] / MAX) * 100);
-        return `<div class="pk-stat-row">
-          <span class="pk-stat-label">${s.label}</span>
-          <span class="pk-stat-val">${p[s.key]}</span>
-          <div class="pk-bar"><div class="pk-bar-fill ${s.cls}" style="width:${pct}%"></div></div>
-        </div>`;
-      }).join('');
-
-      return `<div class="pk-card">
-        <div class="pk-front">
-          <span class="pk-num">#${String(p.rank).padStart(2, '0')}</span>
-          <div class="pk-sprite-wrap">
-            <img class="pk-sprite" src="${CDN}${p.img}.png" alt="${p.name}"
-                 onerror="onImgError(this)" loading="lazy">
-          </div>
-          <div class="pk-name">${p.name}</div>
-          <div class="pk-types">${typeHtml}</div>
-        </div>
-        <div class="pk-back">
-          <div class="pk-back-name">${p.name}</div>
-          <div class="pk-back-gen">${p.gen}</div>
-          ${statRows}
-          <div class="pk-bst"><span>BST </span>${p.bst}</div>
-        </div>
-      </div>`;
-    }
-
-    document.getElementById('poke-grid').innerHTML = POKEMON.map(buildCard).join('');
-
     const TL_PHRASES = [
-      "I ship Go services that don't wake you at 3am, and AI agents that actually work.",
-      "12 years of shipping. Zero hand-holding required.",
-      "backend engineer who cuts your p99 and ships your LLM — same sprint."
+      "I'm that engineer your CTO calls when the system's cooked at 2am.",
+      "no cap  12 years shipping backend, zero downtime, zero drama.",
+      "12 years on the grind. the code speaks for itself, no cap."
     ];
 
     const tlEl = document.getElementById('tagline-text');
@@ -2021,6 +1871,87 @@
       } catch(e) {
         console.warn('Visitor counter unavailable');
       }
+    })();
+  </script>
+  <script>
+    (function() {
+      'use strict';
+
+      function isHeadless() {
+        return [
+          navigator.webdriver === true,
+          !!window.callPhantom || !!window._phantom || !!window.__nightmare,
+          !!document.__selenium_unwrapped || !!document.__webdriver_evaluate || !!document.__fxdriver_evaluate,
+          /chrome/i.test(navigator.userAgent) && !window.chrome,
+          navigator.languages === undefined || navigator.languages.length === 0,
+          navigator.plugins.length === 0 && !/firefox/i.test(navigator.userAgent),
+        ].some(Boolean);
+      }
+
+      function isBot() {
+        return /bot|crawl|spider|scrape|curl|wget|python-requests|python|java|go-http|axios|node-fetch|libwww|httpclient/i
+          .test(navigator.userAgent);
+      }
+
+      function isCanvasBlocked() {
+        try {
+          const c = document.createElement('canvas');
+          const ctx = c.getContext('2d');
+          if (!ctx) return true;
+          ctx.fillText('test', 0, 0);
+          return c.toDataURL() === 'data:,';
+        } catch(e) { return true; }
+      }
+
+      let humanSeen = false;
+      ['mousemove','mousedown','touchstart','scroll','keydown'].forEach(evt => {
+        document.addEventListener(evt, () => { humanSeen = true; }, { once: true, passive: true });
+      });
+
+      function lockContent() {
+        document.body.insertAdjacentHTML('beforeend',
+          '<div id="_sc_shield" style="position:fixed;inset:0;z-index:99999;background:transparent;cursor:not-allowed;"></div>'
+        );
+        document.querySelectorAll('.page, .page-wide, .hero-banner').forEach(el => {
+          el.style.filter = 'blur(12px)';
+          el.style.userSelect = 'none';
+          el.style.pointerEvents = 'none';
+        });
+      }
+
+      if (isBot() || isHeadless() || isCanvasBlocked()) {
+        document.addEventListener('DOMContentLoaded', lockContent);
+      } else {
+        setTimeout(() => {
+          if (!humanSeen && isHeadless()) lockContent();
+        }, 5000);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const trap = document.createElement('a');
+        trap.href = '/honeypot-trap';
+        trap.style.cssText = 'position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;';
+        trap.setAttribute('aria-hidden', 'true');
+        trap.setAttribute('tabindex', '-1');
+        trap.addEventListener('click', () => { lockContent(); });
+        document.body.appendChild(trap);
+      });
+
+      document.addEventListener('contextmenu', e => e.preventDefault());
+
+      document.addEventListener('keydown', e => {
+        if (e.ctrlKey && (e.key === 'u' || e.key === 'U' ||
+                          e.key === 's' || e.key === 'S')) {
+          e.preventDefault();
+        }
+        if ((e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I' ||
+                                          e.key === 'j' || e.key === 'J' ||
+                                          e.key === 'c' || e.key === 'C')) ||
+            e.key === 'F12') {
+          e.preventDefault();
+        }
+      });
+
     })();
   </script>
 </body>
