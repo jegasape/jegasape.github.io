@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeffrey Sánchez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath fill='%23ffffff' d='M440-183v-274L200-596v274l240 139Zm80 0 240-139v-274L520-457v274Zm-40-343 237-137-237-137-237 137 237 137ZM160-252q-19-11-29.5-29T120-321v-318q0-22 10.5-40t29.5-29l280-162q19-11 40-11t40 11l280 162q19 11 29.5 29t10.5 40v318q0 22-10.5 40T800-252L520-90q-19 11-40 11t-40-11L160-252Zm320-228Z'/%3E%3C/svg%3E">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0e0e0e;
+      --surface: #161616;
+      --border: #262626;
+      --ink: #e8e8e8;
+      --mid: #888;
+      --faint: #555;
+      --pill-bg: #1e1e1e;
+    }
+
+    html.light {
+      --bg: #f9f9f7;
+      --surface: #f0efeb;
+      --border: #dedbd4;
+      --ink: #111111;
+      --mid: #666;
+      --faint: #999;
+      --pill-bg: #ebebeb;
+    }
+
+    html {
+      font-size: 22px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      padding: 0 1.5rem 6rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0;
+      margin-bottom: 4rem;
+    }
+
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    nav a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--faint);
+      cursor: pointer;
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      color: var(--mid);
+    }
+
+    nav a.active {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .nav-ext {
+      font-size: 0.72rem !important;
+      color: var(--mid) !important;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .nav-ext:hover {
+      color: var(--ink) !important;
+      border-color: var(--mid);
+    }
+
+    .nav-sep {
+      width: 1px;
+      height: 13px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .theme-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--faint);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      transition: all 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--mid);
+      color: var(--ink);
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .page-wide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .home-name {
+      font-size: clamp(2.2rem, 5.5vw, 3rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      text-align: center;
+    }
+
+    .home-tagline {
+      font-size: 1rem;
+      color: var(--mid);
+      font-weight: 300;
+      max-width: 500px;
+      margin: 0 auto 1.8rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .terminal-block {
+      margin: 0 auto 1.8rem;
+      max-width: 100%;
+      margin: 0 0 2rem 0;
+      margin-top: 0;
+      background: #0d0d0d;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 0 #333 inset;
+      font-family: "JetBrains Mono", "Fira Mono", "Cascadia Code", ui-monospace, monospace;
+    }
+
+    .terminal-titlebar {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.9rem;
+      background: #1a1a1a;
+      border-bottom: 1px solid #222;
+    }
+
+    .tb-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .tb-dot.red    { background: #ff5f57; }
+    .tb-dot.yellow { background: #febc2e; }
+    .tb-dot.green  { background: #28c840; }
+
+    .tb-title {
+      flex: 1;
+      text-align: center;
+      font-size: 0.58rem;
+      color: #555;
+      font-family: "Inter", sans-serif;
+      letter-spacing: 0.04em;
+      margin-right: 1.5rem;
+    }
+
+    .terminal-body {
+      padding: 0.9rem 1.1rem 1rem;
+      font-size: 0.78rem;
+      line-height: 2;
+    }
+
+    .tl-line1 { display: block; }
+    .tl-line2 { display: block; }
+
+    .tl-user   { color: #4ade80; font-weight: 600; }
+    .tl-at     { color: #444; }
+    .tl-host   { color: #60a5fa; font-weight: 600; }
+    .tl-colon  { color: #444; }
+    .tl-path   { color: #c084fc; font-weight: 500; }
+    .tl-prompt { color: #e8e8e8; font-weight: 500; margin-left: 0.15rem; }
+    .tl-cmd    { color: #e8e8e8; font-weight: 400; }
+    .tl-arrow  { color: #4ade80; }
+    #tagline-text  { color: #a3a3a3; font-weight: 300; }
+
+    #tagline-cursor {
+      color: #4ade80;
+      animation: blink 1.05s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .vdot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+      vertical-align: middle;
+      margin-right: 0.2rem;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    html.light .terminal-block {
+      background: #1a1a1a;
+      border-color: #2e2e2e;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.22), 0 1.5px 0 #333 inset;
+    }
+
+    html.light .terminal-titlebar {
+      background: #222;
+      border-bottom-color: #2e2e2e;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 2.5rem;
+      padding: 1.4rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3.5rem;
+      justify-content: space-between;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .stat-value {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--faint);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--faint);
+      margin-bottom: 1.4rem;
+    }
+
+    .job {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .job:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .job-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .job-title {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .job-date {
+      font-size: 0.8rem;
+      color: var(--faint);
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+
+    .job-company {
+      font-size: 0.88rem;
+      color: var(--mid);
+      margin-bottom: 0.8rem;
+      font-weight: 300;
+    }
+
+    .job ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .job ul li {
+      font-size: 0.92rem;
+      opacity: 0.8;
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .job ul li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--border);
+    }
+
+    .tag-row {
+      margin-top: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 400;
+      background: var(--pill-bg);
+      color: var(--faint);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    .edu {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .edu:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .edu-degree {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .edu-school {
+      font-size: 0.85rem;
+      color: var(--mid);
+      font-weight: 300;
+      margin-top: 0.1rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 7rem 1fr;
+      gap: 0.6rem 1rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .sk-label {
+      font-size: 0.78rem;
+      color: var(--faint);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding-top: 0.05rem;
+    }
+
+    .sk-value {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      font-weight: 300;
+    }
+
+    .company-group {
+      border-top: none;
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .company-group + .job {
+      border-top: 1px solid var(--border);
+    }
+
+    .cg-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 0 0.85rem;
+      gap: 1rem;
+    }
+
+    .cg-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .cg-company-name {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      transition: color 0.15s;
+    }
+
+    .cg-company-meta {
+      font-size: 0.82rem;
+      color: var(--mid);
+      font-weight: 300;
+    }
+
+    .cg-right {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-shrink: 0;
+    }
+
+    .cg-total-span {
+      font-size: 0.78rem;
+      color: var(--faint);
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .cg-roles {
+      overflow: hidden;
+    }
+
+    .company-group.open .cg-roles {
+      max-height: none;
+    }
+
+    .cg-timeline {
+      padding: 0 0 1.2rem 1.35rem;
+      border-left: 2px solid var(--border);
+      margin-left: 0.18rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .crole {
+      position: relative;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .crole:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .crole::before {
+      content: '';
+      position: absolute;
+      left: -1.55rem;
+      top: 1.25rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--bg);
+      transition: background 0.15s;
+    }
+
+    .crole:first-child::before {
+      background: var(--mid);
+    }
+
+    .crole-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .crole-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .crole-date {
+      font-size: 0.78rem;
+      color: var(--faint);
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+
+    .crole ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-top: 0.65rem;
+    }
+
+    .crole ul li {
+      font-size: 0.88rem;
+      opacity: 0.8;
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .crole ul li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--border);
+    }
+
+    .page-h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+    }
+
+    .filter-block {
+      margin-bottom: 2rem;
+    }
+
+    .filter-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--faint);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      font-weight: 400;
+      padding: 0.22rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--faint);
+      cursor: pointer;
+      background: transparent;
+      transition: all 0.15s;
+    }
+
+    .pill:hover {
+      border-color: var(--faint);
+      color: var(--mid);
+    }
+
+    .pill.on {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      border: 1px solid var(--border);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .pcard {
+      background: var(--surface);
+      padding: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .pcard:hover {
+      filter: brightness(1.05);
+    }
+
+    .pcard-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .pcard-tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 0.1rem 0.5rem;
+      border-radius: 3px;
+    }
+
+    .pcard-tag.cat {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .pcard-tag.tech {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--faint);
+    }
+
+    .pcard h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .pcard p {
+      font-size: 0.88rem;
+      opacity: 0.75;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .pcard a {
+      font-size: 0.75rem;
+      color: var(--faint);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      align-self: flex-start;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .pcard a:hover {
+      color: var(--ink);
+      border-color: var(--mid);
+    }
+
+    .pcard.hidden {
+      display: none;
+    }
+
+    .list100-sub {
+      font-size: 0.92rem;
+      color: var(--mid);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .list100-sub em {
+      color: var(--faint);
+    }
+
+    .list-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 3rem;
+    }
+
+    .litem {
+      display: flex;
+      gap: 0.8rem;
+      align-items: baseline;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+
+    .litem:last-child {
+      border-bottom: none;
+    }
+
+    .lnum {
+      font-weight: 600;
+      font-size: 0.88rem;
+      min-width: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .lnum.done {
+      text-decoration: line-through;
+      color: var(--faint);
+    }
+
+    .ltext {
+      opacity: 0.8;
+      line-height: 1.45;
+    }
+
+    .ltext.done {
+      text-decoration: line-through;
+      color: var(--faint);
+      opacity: 1;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--faint);
+      font-weight: 300;
+      text-align: center;
+    }
+
+    .cert-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .cert {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cert:last-child {
+      border-bottom: none;
+    }
+
+    .cert-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex: 1;
+    }
+
+    .cert-name {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .cert-issuer {
+      font-size: 0.78rem;
+      color: var(--mid);
+      font-weight: 300;
+    }
+
+    .cert-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.3rem;
+    }
+
+    .cert-link {
+      font-size: 0.72rem;
+      color: var(--faint);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .cert-link:hover {
+      color: var(--ink);
+      border-color: var(--mid);
+    }
+
+    .pokedesk-sub {
+      font-size: 0.85rem;
+      color: var(--mid);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .poke-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .pk-card {
+      position: relative;
+      background: var(--surface);
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pk-front {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 0.6rem 0.7rem;
+      gap: 0.25rem;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .pk-card:hover .pk-front {
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+    }
+
+    .pk-num {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.6rem;
+      font-size: 0.52rem;
+      font-weight: 600;
+      color: var(--faint);
+      letter-spacing: 0.06em;
+    }
+
+    .pk-sprite-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .pk-sprite {
+      width: 76px;
+      height: 76px;
+      image-rendering: pixelated;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.20));
+      transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .pk-card:hover .pk-sprite {
+      transform: scale(1.1) translateY(-3px);
+    }
+
+    .pk-name {
+      font-size: 0.58rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-align: center;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .pk-types {
+      display: flex;
+      gap: 0.18rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 0.15rem;
+    }
+
+    .pk-type {
+      font-size: 0.46rem;
+      font-weight: 700;
+      padding: 0.07rem 0.32rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #fff;
+    }
+
+    .pk-back {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      padding: 0.65rem 0.7rem 0.6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.2rem;
+      transform: translateY(100%);
+      transition: transform 0.26s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .pk-card:hover .pk-back {
+      transform: translateY(0);
+    }
+
+    .pk-back-name {
+      font-size: 0.58rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.05rem;
+    }
+
+    .pk-back-gen {
+      font-size: 0.46rem;
+      color: var(--faint);
+      font-weight: 300;
+      margin-bottom: 0.25rem;
+    }
+
+    .pk-stat-row {
+      display: flex;
+      align-items: center;
+      gap: 0.28rem;
+    }
+
+    .pk-stat-label {
+      font-size: 0.44rem;
+      font-weight: 700;
+      color: var(--faint);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      width: 1.7rem;
+      flex-shrink: 0;
+    }
+
+    .pk-stat-val {
+      font-size: 0.48rem;
+      font-weight: 500;
+      color: var(--ink);
+      width: 1.4rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pk-bar {
+      flex: 1;
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .pk-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+    }
+
+    .pk-bst {
+      margin-top: 0.3rem;
+      font-size: 0.5rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-align: right;
+      border-top: 1px solid var(--border);
+      padding-top: 0.22rem;
+    }
+
+    .pk-bst span {
+      color: var(--faint);
+      font-weight: 300;
+    }
+
+    .t-normal { background: #9fa19f }
+    .t-fire { background: #e62829 }
+    .t-water { background: #2980ef }
+    .t-grass { background: #3fa129 }
+    .t-electric { background: #fac000; color: #333 !important }
+    .t-ice { background: #3dcef3; color: #333 !important }
+    .t-fighting { background: #ff8000 }
+    .t-poison { background: #9141cb }
+    .t-ground { background: #915121 }
+    .t-flying { background: #81b9ef; color: #333 !important }
+    .t-psychic { background: #ef4179 }
+    .t-bug { background: #91a119 }
+    .t-rock { background: #afa981; color: #333 !important }
+    .t-ghost { background: #704170 }
+    .t-dragon { background: #5060e1 }
+    .t-dark { background: #624d4e }
+    .t-steel { background: #60a1b8; color: #333 !important }
+    .t-fairy { background: #ef70ef }
+
+    .bar-hp { background: #ff5959; }
+    .bar-atk { background: #f5a623; }
+    .bar-def { background: #c8b000; }
+    .bar-spa { background: #6ec6f5; }
+    .bar-spd { background: #78c850; }
+    .bar-spe { background: #f85888; }
+
+    .pk-note {
+      margin-top: 1.4rem;
+      font-size: 0.58rem;
+      color: var(--faint);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+
+    .nav-mobile-bar {
+      display: none;
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    @media (max-width: 780px) {
+      html { font-size: 18px; }
+      body { padding: 0 1.2rem 5rem; }
+      .page, .page-wide { max-width: 100%; }
+      .nav-inner { max-width: 100%; padding: 0 1.2rem; }
+      .poke-grid { grid-template-columns: repeat(4, 1fr); }
+      .pk-sprite { width: 64px; height: 64px; }
+    }
+
+    @media (max-width: 560px) {
+      html { font-size: 16px; }
+      body { padding: 0 1rem 4rem; }
+
+      .nav-left { display: none; flex-direction: column; gap: 0; }
+      .nav-right { display: none; flex-direction: column; gap: 0; }
+      .nav-inner { flex-wrap: wrap; padding: 0 1rem; position: relative; }
+
+      .nav-mobile-bar {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-brand {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+      }
+
+      .nav-mobile-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        width: 28px;
+      }
+
+      .hamburger span {
+        display: block;
+        height: 1.5px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition: transform 0.2s ease, opacity 0.2s ease, width 0.2s ease;
+        width: 100%;
+      }
+
+      .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+      .hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+      .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+      nav.open .nav-left,
+      nav.open .nav-right { display: flex; }
+
+      nav.open .nav-left {
+        width: 100%;
+        padding: 0.8rem 0 0.4rem;
+        border-top: 1px solid var(--border);
+        margin-top: 0.6rem;
+        gap: 0;
+      }
+
+      nav.open .nav-left a {
+        padding: 0.55rem 0;
+        font-size: 0.88rem !important;
+        border-bottom: 1px solid var(--border);
+        color: var(--mid);
+        width: 100%;
+      }
+
+      nav.open .nav-left a:last-child { border-bottom: none; }
+      nav.open .nav-left a.active { color: var(--ink); }
+
+      nav.open .nav-right {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 0 0.4rem;
+        gap: 0;
+      }
+
+      nav.open .nav-right a {
+        padding: 0.55rem 0;
+        font-size: 0.88rem !important;
+        border-bottom: 1px solid var(--border);
+        border-bottom-style: solid !important;
+        width: 100%;
+        color: var(--mid) !important;
+        text-decoration: none !important;
+      }
+
+      nav.open .nav-right a:last-of-type { border-bottom: none; }
+      nav.open .nav-right a:hover { color: var(--ink) !important; }
+      nav.open .nav-right .nav-sep,
+      nav.open .nav-right .theme-btn { display: none; }
+
+      .stats-row { gap: 0.8rem; flex-wrap: wrap; }
+      .stat-value { font-size: 1.4rem; }
+      .stat-label { font-size: 0.65rem; }
+
+      .job-row { flex-direction: column; gap: 0.1rem; align-items: flex-start; }
+      .job-date { font-size: 0.72rem; }
+
+      .crole-row { flex-direction: column; gap: 0.1rem; align-items: flex-start; }
+      .crole-date { font-size: 0.72rem; }
+
+      .list-grid { grid-template-columns: 1fr; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 5.5rem 1fr; }
+
+      .cert { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .cert-link { align-self: flex-start; }
+
+      .poke-grid { grid-template-columns: repeat(3, 1fr); }
+      .pk-sprite { width: 56px; height: 56px; }
+
+      nav { margin-bottom: 2.5rem; }
+    }
+
+    @media (max-width: 360px) {
+      .poke-grid { grid-template-columns: repeat(2, 1fr); }
+      html { font-size: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="main-nav">
+    <div class="nav-inner">
+
+      <div class="nav-mobile-bar">
+        <span class="nav-brand">Jeffrey Sánchez</span>
+        <div class="nav-mobile-actions">
+          <button class="theme-btn" id="theme-toggle">● Dark</button>
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-left">
+        <a class="active" data-view="home">home/</a>
+        <a data-view="projects">dist/</a>
+        <a data-view="list100">backlog/</a>
+        <a data-view="pokedesk">pokedex/</a>
+        <a href="https://youtube.com/jegasape" target="_blank" rel="noopener noreferrer" class="nav-ext">YouTube <span
+            class="material-icons" style="font-size:0.75rem;vertical-align:middle;">open_in_new</span></a>
+        <a href="https://github.com/jegasape" target="_blank" rel="noopener noreferrer" class="nav-ext">GitHub <span
+            class="material-icons" style="font-size:0.75rem;vertical-align:middle;">open_in_new</span></a>
+      </div>
+      <div class="nav-right">
+        <div class="nav-sep"></div>
+        <button class="theme-btn" id="theme-toggle-desk">● Dark</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="view-home" class="view active">
+    <div class="page">
+      <h1 class="home-name">Jeffrey Sánchez</h1>
+      <p class="home-tagline">Fullstack Software Engineer with special interest in Machine Learning, Golang, and Distributed Systems.</p>
+      <div class="stats-row">
+        <div class="stat"><span class="stat-value">12+</span><span class="stat-label">Years of experience</span></div>
+        <div class="stat"><span class="stat-value">10+</span><span class="stat-label">Companies worked with</span></div>
+        <div class="stat"><span class="stat-value">8+</span><span class="stat-label">Languages &amp; stacks</span></div>
+      </div>
+      <section>
+        <p class="section-label">About</p>
+        <p style="font-size:0.92rem;opacity:0.8;line-height:1.75;">Over the course of 12 years, I have developed systems
+          that operate well when they are working and have problems when they don't, with scalable architecture and
+          automated processes giving people back their time. My primary programming languages are <strong style="font-weight:700;color:var(--ink);opacity:1;">C#, TypeScript, Go and
+          Python</strong>, but writing code that is working for this moment is not my sole craft. I also want to write code that
+          will continue to work after I've moved on to another opportunity.</p>
+        <p style="font-size:0.92rem;opacity:0.8;line-height:1.75;margin-top:0.9rem;">I don't think of deployment methods
+          as an afterthought, but as part of my thought process. Both Docker and Kubernetes can be used to accomplish
+          the goals of "quickly" and "with certainty," and I believe they do not need to be opposed. I am concerned when
+          projects are completed about whether or not the maintainers will have the skills to do so. Any system that
+          relies on one person's capability to maintain it is a risk.</p>
+        <p style="font-size:0.92rem;opacity:0.8;line-height:1.75;margin-top:0.9rem;">I will support my coworkers and
+          invest time in developing them through mentoring and justifying my decision-making. I believe the greatest
+          value comes from creating a cohesive team that shares the same understanding of the solution they collectively
+          developed. I am most successful working through difficult problems with significant ramifications, alongside
+          other serious-minded people in pursuit of the best solution.</p>
+      </section>
+
+      <section>
+        <p class="section-label">Experience</p>
+
+        <div class="job">
+          <div class="job-row"><span class="job-title">Software Go Engineer</span><span class="job-date"></span></div>
+          <p class="job-company">Bitget · Remote · Contract</p>
+          <ul>
+            <li>Reduced API response times by ~40% by profiling and rewriting hot-path handlers in idiomatic Go,
+              eliminating unnecessary allocations and leveraging connection pooling.</li>
+            <li>Optimised core database queries through index redesign and query restructuring, cutting average query
+              execution time by ~55% and reducing DB load under peak traffic.</li>
+            <li>Improved system throughput by ~35% by refactoring synchronous blocking calls into concurrent goroutine
+              pipelines, handling higher request volumes without additional infrastructure.</li>
+            <li>Participated in service layer refactoring, helping decouple business logic from data access concerns and
+              improving overall code maintainability.</li>
+          </ul>
+          <div class="tag-row"><span class="tag">Go</span><span class="tag">PostgreSQL</span><span
+              class="tag">Docker</span><span class="tag">REST APIs</span><span class="tag">Git</span></div>
+        </div>
+
+        <div class="job">
+          <div class="job-row"><span class="job-title">Senior Software Developer</span><span class="job-date">Feb 2025 –
+              May 2025</span></div>
+          <p class="job-company">Arajet · Boca Chica, Santo Domingo, DO · Hybrid</p>
+          <ul>
+            <li>Boosted data processing 3× with Python pipelines.</li>
+            <li>Collaborated with technical leadership and DevOps to establish and enforce development best practices
+              across the engineering org.</li>
+            <li>Standardized development framework and architecture, contributing to the internal core of
+              new.arajet.com.</li>
+            <li>Mentored 6+ developers in Python best practices, code review standards, and commit discipline.</li>
+          </ul>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">C#</span><span
+              class="tag">RPA</span><span class="tag">AKS</span><span class="tag">Docker</span><span
+              class="tag">Kubernetes</span><span class="tag">Azure</span><span class="tag">Git</span></div>
+        </div>
+
+        <div class="job">
+          <div class="job-row"><span class="job-title">Senior Software Engineer – AI</span><span class="job-date">Sep
+              2024 – Nov 2024</span></div>
+          <p class="job-company">GNS · Remote · Contract</p>
+          <ul>
+            <li>Designed full observability stack: Grafana dashboards, Loki log aggregation, and Prometheus metrics for
+              end-to-end microservice visibility.</li>
+            <li>Active contributor to the Pipecat open-source community, building real-time AI voice agent pipeline
+              components.</li>
+            <li>Architected AI agent orchestration services using Python and FastAPI, integrating LLMs for intent
+              detection, summarisation, and quality monitoring.</li>
+          </ul>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Genesys
+              Cloud</span><span class="tag">Grafana</span><span class="tag">Loki</span><span
+              class="tag">Prometheus</span><span class="tag">Pipecat</span><span class="tag">Docker</span><span
+              class="tag">Git</span></div>
+        </div>
+
+        <div class="job">
+          <div class="job-row"><span class="job-title">Senior Software Engineer</span><span class="job-date">Mar 2024 –
+              Jul 2024</span></div>
+          <p class="job-company">CRECERLAB · Remote</p>
+          <ul>
+            <li>Led backend architecture design for core product features focused on performance and scalability.</li>
+            <li>Mentored junior developers and established engineering best practices including code review standards
+              and CI/CD workflows.</li>
+          </ul>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">JavaScript</span><span
+              class="tag">React</span><span class="tag">Docker</span><span class="tag">SQL</span><span
+              class="tag">Git</span></div>
+        </div>
+
+        <div class="job">
+          <div class="job-row"><span class="job-title">Senior Software Engineer</span><span class="job-date">May 2023 –
+              Feb 2024 </span></div>
+          <p class="job-company">Antillean Software (AS) · Santo Domingo, DO</p>
+          <ul>
+            <li>Led migration of core apps from legacy monoliths to microservice architecture using FastAPI and Alembic.</li>
+            <li>Managed PostgreSQL migrations and centralised log management with MongoDB, improving reliability and
+              query performance.</li>
+            <li>Spearheaded container-based deployments on AWS with Docker and Kubernetes; mentored the engineering
+              team.</li>
+          </ul>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">FastAPI</span><span
+              class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">Alembic</span><span
+              class="tag">Kubernetes</span><span class="tag">AWS</span><span class="tag">Git</span></div>
+        </div>
+
+        <div class="job">
+          <div class="job-row"><span class="job-title">Senior Software Engineer</span><span class="job-date">May 2022 –
+              Mar 2023</span></div>
+          <p class="job-company">Ed-Fi Alliance · Austin, TX · Remote</p>
+          <ul>
+            <li>Architected ETL data lake pipeline with Dagster on AWS, enabling customer-facing visualisation via Power
+              BI.</li>
+            <li>Optimised PL/SQL stored procedures and database objects for downstream reporting and analytics.</li>
+          </ul>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">C#</span><span
+              class="tag">Dagster</span><span class="tag">AWS</span><span class="tag">PostgreSQL</span><span
+              class="tag">Power BI</span><span class="tag">Git</span></div>
+        </div>
+
+        <div class="company-group open" id="cbord-group">
+          <div class="cg-header">
+            <div class="cg-left">
+              <span class="cg-company-name">CBORD</span>
+              <span class="cg-company-meta">Ithaca, NY · Remote</span>
+            </div>
+          </div>
+          <div class="cg-roles">
+            <div class="cg-timeline">
+
+              <div class="crole">
+                <div class="crole-row">
+                  <span class="crole-title">Senior UI Software Engineer &nbsp;<span
+                      style="font-size:0.72rem;color:var(--faint);font-weight:300;font-style:italic;">↑ promoted</span></span>
+                  <span class="crole-date">Jan 2021 – Mar 2022</span>
+                </div>
+                <ul>
+                  <li>Drove Angular version migration to a modern stable release, refactoring legacy components and reducing
+                    UI bundle size and load times significantly.</li>
+                  <li>Enhanced mobile application UX with Ionic and RxJS; built comprehensive test suites validating component
+                    behaviour across platforms.</li>
+                  <li>Recognised for technical impact across backend and frontend — promoted after first year.</li>
+                </ul>
+                <div class="tag-row"><span class="tag">Angular</span><span class="tag">Ionic</span><span
+                    class="tag">RxJS</span><span class="tag">TypeScript</span><span class="tag">Git</span></div>
+              </div>
+
+              <div class="crole">
+                <div class="crole-row">
+                  <span class="crole-title">Software Engineer</span>
+                  <span class="crole-date">Dec 2019 – Nov 2020</span>
+                </div>
+                <ul>
+                  <li>Contributed to multiple internal and customer-facing .NET products, writing clean, maintainable C#
+                    across MVC layers.</li>
+                  <li>Implemented XSS and CSRF security hardening, closing critical vulnerabilities in production systems.</li>
+                  <li>Optimised stored procedures and SQL Server objects, improving backend response times on high-traffic
+                    endpoints.</li>
+                  <li>Migrated legacy jQuery and Bootstrap to modern stable versions, enabling compatibility with new product
+                    lines.</li>
+                </ul>
+                <div class="tag-row"><span class="tag">C#</span><span class="tag">.NET 4.5+</span><span
+                    class="tag">MVC</span><span class="tag">SQL Server</span><span class="tag">jQuery</span><span
+                    class="tag">Bootstrap</span><span class="tag">Git</span></div>
+              </div>
+
+            </div>
+          </div>
+          <br>
+        </div>
+
+        <div class="job">
+          <div class="job-row"><span class="job-title">Software Engineer</span><span class="job-date">Aug 2017 – Oct
+              2019</span></div>
+          <p class="job-company">ABI Document Support Services · Remote · via NewTech</p>
+          <ul>
+            <li>Developed and maintained enterprise applications using C#, .NET MVC, and Angular with reactive
+              programming patterns.</li>
+            <li>Coordinated end-to-end delivery across design, development, testing, and deployment.</li>
+          </ul>
+          <div class="tag-row"><span class="tag">Angular</span><span class="tag">C#</span><span class="tag">.NET
+              MVC</span><span class="tag">SQL Server</span><span class="tag">Git</span></div>
+        </div>
+
+        <div class="job">
+          <div class="job-row"><span class="job-title">Full Stack Engineer</span><span class="job-date">Jan 2017 – Jun
+              2017</span></div>
+          <p class="job-company">MEDS Gravitas · Santo Domingo, DO</p>
+          <ul>
+            <li>Led POS integration with Odoo; built GraphQL APIs and real-time features for web and mobile clients.</li>
+          </ul>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">React</span><span
+              class="tag">GraphQL</span><span class="tag">Redis</span><span class="tag">MongoDB</span><span
+              class="tag">Git</span></div>
+        </div>
+
+        <div class="job">
+          <div class="job-row"><span class="job-title">Software Engineer</span><span class="job-date">Feb 2015 – Nov
+              2016</span></div>
+          <p class="job-company">Citi · Santo Domingo, DO · On-site</p>
+          <ul>
+            <li>Rewrote and optimised over 30 stored procedures and SQL Server jobs, reducing average transaction
+              processing time by ~45% through index tuning and query restructuring.</li>
+            <li>Migrated core transaction applications from synchronous blocking patterns to async/await, cutting UI
+              freeze time to near-zero for operators handling high-volume workflows.</li>
+            <li>Championed adoption of modern .NET patterns — conducted internal walkthroughs on async programming,
+              accelerating team-wide transition.</li>
+          </ul>
+          <div class="tag-row"><span class="tag">C#</span><span class="tag">WinForms</span><span class="tag">SQL
+              Server</span><span class="tag">async/await</span><span class="tag">.NET</span><span class="tag">Git</span>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-row"><span class="job-title">Junior Software Developer</span><span class="job-date">Jan 2013 –
+              Dec 2014</span></div>
+          <p class="job-company">Contraloría General de la República Dominicana · Santo Domingo, DO · On-site</p>
+          <ul>
+            <li>Built and maintained internal government applications using C# and .NET, supporting financial control
+              and auditing workflows.</li>
+            <li>Wrote and optimised SQL Server stored procedures and queries for reporting and data management modules.</li>
+            <li>Developed WinForms interfaces for internal users, focusing on usability and reliability across
+              high-volume operations.</li>
+          </ul>
+          <div class="tag-row"><span class="tag">C#</span><span class="tag">WinForms</span><span class="tag">SQL
+              Server</span><span class="tag">.NET</span><span class="tag">Git</span></div>
+        </div>
+
+      </section>
+
+      <section>
+        <p class="section-label">Education</p>
+        <div class="edu">
+          <div>
+            <p class="edu-degree">Bachelor's in Computer Science</p>
+            <p class="edu-school">Universidad Nacional Pedro Henríquez Ureña (UNPHU)</p>
+          </div>
+          <span class="job-date">2011 – 2017</span>
+        </div>
+        <div class="edu">
+          <div>
+            <p class="edu-degree">Associate's Degree — Software Developer</p>
+            <p class="edu-school">ITLA · Santo Domingo, DO</p>
+          </div>
+          <span class="job-date">2010 – 2014</span>
+        </div>
+      </section>
+
+      <section>
+        <p class="section-label">Skills</p>
+        <div class="skills-grid">
+          <span class="sk-label">Languages</span><span class="sk-value">Python, Go, C/C++/C#, JavaScript</span>
+          <span class="sk-label">Frameworks</span><span class="sk-value">FastAPI, Django, React, Node.js, .NET MVC</span>
+          <span class="sk-label">AI / ML</span><span class="sk-value">LLM APIs, Pipecat, Genesys Cloud AI</span>
+          <span class="sk-label">Observability</span><span class="sk-value">Grafana, Loki, Prometheus</span>
+          <span class="sk-label">Databases</span><span class="sk-value">PostgreSQL, MongoDB, Redis, SQL Server</span>
+          <span class="sk-label">Infra</span><span class="sk-value">Docker, Kubernetes, AWS, CI/CD, Git, Bash</span>
+          <span class="sk-label">Spoken</span><span class="sk-value">Spanish (native) · Portuguese (conversational)</span>
+        </div>
+      </section>
+
+      <section>
+        <p class="section-label">Certifications</p>
+        <div class="cert-list">
+
+          <div class="cert">
+            <div class="cert-left">
+              <div class="cert-name">gRPC [Golang] Master Class: Build Modern API &amp; Microservices</div>
+              <div class="cert-issuer">Udemy · Issued Aug 2025</div>
+              <div class="cert-tags"><span class="tag">Go</span><span class="tag">gRPC</span><span class="tag">MongoDB</span></div>
+            </div>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-6a43225c-b42f-4b19-aeef-f94a9da0c5a7/"
+              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
+                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+          </div>
+
+          <div class="cert">
+            <div class="cert-left">
+              <div class="cert-name">Go Bootcamp: Master Golang with 1000+ Exercises and Projects</div>
+              <div class="cert-issuer">Udemy · Issued Feb 2025</div>
+              <div class="cert-tags"><span class="tag">Go</span></div>
+            </div>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-689d65ef-35f7-43f0-8f3c-3d13a61b8254/"
+              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
+                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+          </div>
+
+          <div class="cert">
+            <div class="cert-left">
+              <div class="cert-name">AWS Certified Machine Learning Specialty 2025 – Hands On!</div>
+              <div class="cert-issuer">Udemy · Issued Jan 2025</div>
+              <div class="cert-tags"><span class="tag">Python</span><span class="tag">AWS</span><span
+                  class="tag">Machine Learning</span><span class="tag">TensorFlow</span></div>
+            </div>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-54c7d82f-bd48-4840-805c-e264ea7b1a74/"
+              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
+                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+          </div>
+
+          <div class="cert">
+            <div class="cert-left">
+              <div class="cert-name">Data Science: Deep Learning and Neural Networks in Python</div>
+              <div class="cert-issuer">Udemy · Issued May 2023</div>
+              <div class="cert-tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span
+                  class="tag">Scikit-Learn</span></div>
+            </div>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-b5392e07-7e3e-4dd4-b7e3-8f2214b35aef/"
+              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
+                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+          </div>
+
+          <div class="cert">
+            <div class="cert-left">
+              <div class="cert-name">Machine Learning, Data Science &amp; AI Engineering with Python</div>
+              <div class="cert-issuer">Udemy · Issued Jan 2023</div>
+              <div class="cert-tags"><span class="tag">TensorFlow</span><span class="tag">Python</span><span class="tag">GPT</span></div>
+            </div>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-687c9338-0980-4931-b280-cde686a5e946/"
+              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
+                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+          </div>
+
+          <div class="cert">
+            <div class="cert-left">
+              <div class="cert-name">Next.js 15 &amp; React – The Complete Guide</div>
+              <div class="cert-issuer">Udemy · Issued Jun 2022</div>
+              <div class="cert-tags"><span class="tag">React.js</span><span class="tag">TypeScript</span><span class="tag">Next.js</span></div>
+            </div>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-aa745aec-ceb5-42c6-9a8f-71dd538d281c/"
+              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
+                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+          </div>
+
+          <div class="cert">
+            <div class="cert-left">
+              <div class="cert-name">React – The Complete Guide 2025 (incl. Next.js, Redux)</div>
+              <div class="cert-issuer">Udemy · Issued Apr 2022</div>
+              <div class="cert-tags"><span class="tag">React.js</span><span class="tag">Redux.js</span><span
+                  class="tag">JavaScript</span><span class="tag">HTML5</span><span class="tag">CSS</span></div>
+            </div>
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-a095dd20-2d7d-45eb-b816-8f6bc8018b65/"
+              target="_blank" rel="noopener noreferrer">Show credential <span class="material-icons"
+                style="font-size:0.7rem;vertical-align:middle;">open_in_new</span></a>
+          </div>
+
+        </div>
+      </section>
+
+      <footer>© <span id="footer-year"></span> Jeffrey Sánchez &nbsp;·&nbsp; <span class="vdot"></span> <span id="v-unique">—</span> unique &nbsp;·&nbsp; <span id="v-total">—</span> visits</footer>
+    </div>
+  </div>
+
+  <div id="view-projects" class="view">
+    <div class="page">
+      <div class="terminal-block">
+        <div class="terminal-titlebar">
+          <span class="tb-dot red"></span>
+          <span class="tb-dot yellow"></span>
+          <span class="tb-dot green"></span>
+          <span class="tb-title">jeffrey@web — zsh</span>
+        </div>
+        <div class="terminal-body">
+          <span class="tl-line1"><span class="tl-user">jegasape</span><span class="tl-at">@</span><span class="tl-host">web</span><span class="tl-colon">:</span><span class="tl-path">~</span><span class="tl-prompt"> $</span> <span class="tl-cmd">whoami</span></span>
+          <span class="tl-line2"><span class="tl-arrow">▸</span> <span id="tagline-text"></span><span id="tagline-cursor">▋</span></span>
+        </div>
+      </div>
+      <div class="filter-block">
+        <p class="filter-label">Filter by type:</p>
+        <div class="pills" id="ft">
+          <span class="pill on" data-f="all">All</span><span class="pill" data-f="Backend">Backend</span><span
+            class="pill" data-f="Frontend">Frontend</span><span class="pill" data-f="AI">AI</span><span class="pill"
+            data-f="Tool">Tool</span>
+        </div>
+        <p class="filter-label">Filter by language:</p>
+        <div class="pills" id="fl">
+          <span class="pill on" data-f="all">All</span><span class="pill" data-f="Go">Go</span><span class="pill"
+            data-f="Python">Python</span><span class="pill" data-f="C#">C#</span><span class="pill" data-f="TypeScript">TypeScript</span><span
+            class="pill" data-f="Shell">Shell</span>
+        </div>
+      </div>
+      <div class="proj-grid" id="pgrid">
+        <div class="pcard" data-t="AI,Backend" data-l="Python">
+          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag cat">Backend</span><span
+              class="pcard-tag tech">Python</span><span class="pcard-tag tech">FastAPI</span><span
+              class="pcard-tag tech">Pipecat</span></div>
+          <h3>Real-time Voice AI Agent</h3>
+          <p>AI voice agent pipeline with Pipecat and FastAPI, integrating LLMs for real-time speech-to-intent workflows.</p>
+          <a href="https://github.com/jegasape">github.com/jegasape</a>
+        </div>
+        <div class="pcard" data-t="AI" data-l="Python">
+          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span
+              class="pcard-tag tech">OpenCV</span></div>
+          <h3>Real-time Facial Recognition</h3>
+          <p>Real-time facial recognition and identity authentication using OpenCV — custom feature extraction pipeline.</p>
+          <a href="https://github.com/jegasape/face-recognition">github.com/jegasape/face-recognition</a>
+        </div>
+        <div class="pcard" data-t="Backend" data-l="Go">
+          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Go</span><span
+              class="pcard-tag tech">PostgreSQL</span><span class="pcard-tag tech">Docker</span></div>
+          <h3>High-performance Go Services</h3>
+          <p>Core backend services for Biget.do — ~40% latency reduction and ~35% throughput improvement using goroutine pipelines.</p>
+          <a href="https://github.com/jegasape">github.com/jegasape</a>
+        </div>
+        <div class="pcard" data-t="Tool" data-l="C#">
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">C#</span><span
+              class="pcard-tag tech">.NET</span></div>
+          <h3>Dominican Lottery Results Scraper</h3>
+          <p>Automated extraction and parsing of Dominican lottery results with precise digit-retrieval algorithms and a clean CLI interface.</p>
+          <a href="https://github.com/jegasape/dominican-lotteries">github.com/jegasape/dominican-lotteries</a>
+        </div>
+        <div class="pcard" data-t="Backend,AI" data-l="Python">
+          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag cat">AI</span><span
+              class="pcard-tag tech">Python</span><span class="pcard-tag tech">Dagster</span><span
+              class="pcard-tag tech">AWS</span></div>
+          <h3>ETL Data Lake Pipeline</h3>
+          <p>End-to-end ETL pipeline using Dagster on AWS, surfacing data through Power BI dashboards for customer analytics.</p>
+          <a href="https://github.com/jegasape">github.com/jegasape</a>
+        </div>
+        <div class="pcard" data-t="Tool" data-l="Python">
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Grafana</span><span
+              class="pcard-tag tech">Loki</span><span class="pcard-tag tech">Prometheus</span></div>
+          <h3>Microservices Observability Stack</h3>
+          <p>Production-grade observability setup — Grafana dashboards, Loki log aggregation, and Prometheus metrics.</p>
+          <a href="https://github.com/jegasape">github.com/jegasape</a>
+        </div>
+        <div class="pcard" data-t="Tool" data-l="Go">
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
+              class="pcard-tag tech">Concurrency</span></div>
+          <h3>Concurrent Wallpaper Downloader</h3>
+          <p>Fast CLI tool to download images and wallpapers concurrently with fine-grained control. Lightweight and built for speed.</p>
+          <a href="https://github.com/jegasape/goget-wallpaper">github.com/jegasape/goget-wallpaper</a>
+        </div>
+        <div class="pcard" data-t="Tool" data-l="Go">
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
+              class="pcard-tag tech">Finance</span></div>
+          <h3>Real-time Stock Market Tracker</h3>
+          <p>Real-time S&amp;P 500 and stock exchange tracker with market movements and trends. Built with the Dominican Republic market in mind.</p>
+          <a href="https://github.com/jegasape/spirex">github.com/jegasape/spirex</a>
+        </div>
+        <div class="pcard" data-t="Tool" data-l="Go">
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
+              class="pcard-tag tech">Concurrency</span></div>
+          <h3>Go Concurrent Progress Bar</h3>
+          <p>High-speed concurrent progress tracking for Go pipelines — inspired by Python's tqdm, for batch and parallel workloads.</p>
+          <a href="https://github.com/jegasape/TQDMK">github.com/jegasape/TQDMK</a>
+        </div>
+        <div class="pcard" data-t="Tool" data-l="Go">
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
+              class="pcard-tag tech">Concurrency</span></div>
+          <h3>Channel-based Progress Tracker</h3>
+          <p>Concurrent Go utility for tracking progress across parallel tasks — channel-native pipeline integration.</p>
+          <a href="https://github.com/jegasape/TQDMC">github.com/jegasape/TQDMC</a>
+        </div>
+        <div class="pcard" data-t="Tool" data-l="Go">
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
+              class="pcard-tag tech">Security</span></div>
+          <h3>AES-256 Encryption Library</h3>
+          <p>Clean, reusable Go library for AES-256 symmetric encryption — designed to drop into any Go application with minimal setup.</p>
+          <a href="https://github.com/jegasape/aes256">github.com/jegasape/aes256</a>
+        </div>
+        <div class="pcard" data-t="Tool" data-l="Go">
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Go</span><span
+              class="pcard-tag tech">Memory</span></div>
+          <h3>Weak Pointer for Go</h3>
+          <p>Go library implementing weak pointer semantics — references that don't prevent garbage collection, useful for caching.</p>
+          <a href="https://github.com/jegasape/weakpointer">github.com/jegasape/weakpointer</a>
+        </div>
+        <div class="pcard" data-t="Backend" data-l="Go">
+          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Go</span><span
+              class="pcard-tag tech">HTTP</span><span class="pcard-tag tech">Fork</span></div>
+          <h3>High-performance Go HTTP Framework</h3>
+          <p>Fork of CloudWeGo's Hertz — a high-performance, extensible Go HTTP framework for microservices.</p>
+          <a href="https://github.com/jegasape/hertz">github.com/jegasape/hertz</a>
+        </div>
+        <div class="pcard" data-t="Backend" data-l="Go">
+          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Go</span><span
+              class="pcard-tag tech">RPC</span><span class="pcard-tag tech">Fork</span></div>
+          <h3>High-performance Go RPC Framework</h3>
+          <p>Fork of CloudWeGo's Kitex — a low-latency, strongly-extensible Go RPC framework for microservice communication.</p>
+          <a href="https://github.com/jegasape/kitex">github.com/jegasape/kitex</a>
+        </div>
+        <div class="pcard" data-t="Backend" data-l="Go">
+          <div class="pcard-tags"><span class="pcard-tag cat">Backend</span><span class="pcard-tag tech">Go</span><span
+              class="pcard-tag tech">WebSockets</span><span class="pcard-tag tech">Fork</span></div>
+          <h3>1M WebSocket Connections in Go</h3>
+          <p>Exploration of handling 1 million simultaneous WebSocket connections in Go — concurrency stress-test and benchmark.</p>
+          <a href="https://github.com/jegasape/1m-go-websockets">github.com/jegasape/1m-go-websockets</a>
+        </div>
+        <div class="pcard" data-t="AI" data-l="Python">
+          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span
+              class="pcard-tag tech">RAG</span><span class="pcard-tag tech">Fork</span></div>
+          <h3>Adaptive RAG Agent Framework</h3>
+          <p>Fork of an adaptive self-directed RAG framework for intelligent agents — explored for production AI pipeline design.</p>
+          <a href="https://github.com/jegasape/advanced-rag-flow">github.com/jegasape/advanced-rag-flow</a>
+        </div>
+        <div class="pcard" data-t="AI" data-l="Python">
+          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span
+              class="pcard-tag tech">LLM</span><span class="pcard-tag tech">Fork</span></div>
+          <h3>Reasoning LLM via Reinforcement Learning</h3>
+          <p>Fork of DeepSeek-R1 — a reasoning-focused LLM trained via RL, for agent reasoning chains and task planning.</p>
+          <a href="https://github.com/jegasape/DeepSeek-R1">github.com/jegasape/DeepSeek-R1</a>
+        </div>
+        <div class="pcard" data-t="AI" data-l="Python">
+          <div class="pcard-tags"><span class="pcard-tag cat">AI</span><span class="pcard-tag tech">Python</span><span
+              class="pcard-tag tech">LLM</span><span class="pcard-tag tech">Fork</span></div>
+          <h3>Frontier Open-source LLM</h3>
+          <p>Fork of DeepSeek-V3. Used for local inference experiments and evaluating model capabilities for AI features.</p>
+          <a href="https://github.com/jegasape/DeepSeek-V3">github.com/jegasape/DeepSeek-V3</a>
+        </div>
+        <div class="pcard" data-t="Frontend" data-l="TypeScript">
+          <div class="pcard-tags"><span class="pcard-tag cat">Frontend</span><span class="pcard-tag tech">TypeScript</span></div>
+          <h3>Flying App</h3>
+          <p>TypeScript frontend application — currently in active development.</p>
+          <a href="https://github.com/jegasape/flying-app">github.com/jegasape/flying-app</a>
+        </div>
+        <div class="pcard" data-t="Tool" data-l="Shell">
+          <div class="pcard-tags"><span class="pcard-tag cat">Tool</span><span class="pcard-tag tech">Shell</span><span
+              class="pcard-tag tech">Linux</span></div>
+          <h3>Custom Desktop Environment Setup</h3>
+          <p>Personal dotfiles with window manager configs, kitty terminal themes, and a guide on building a custom Linux desktop.</p>
+          <a href="https://github.com/jegasape/dotfiles">github.com/jegasape/dotfiles</a>
+        </div>
+      </div>
+      <footer>© <span id="footer-year"></span> Jeffrey Sánchez</footer>
+    </div>
+  </div>
+
+  <div id="view-list100" class="view">
+    <div class="page">
+      <h2 class="page-h1">Backlog</h2>
+      <p class="list100-sub">Things I want to do before I die.</p>
+      <div class="list-grid">
+        <div>
+          <div class="litem"><span class="lnum done">1</span><span class="ltext done">Contribute to an open-source project</span></div>
+          <div class="litem"><span class="lnum">2</span><span class="ltext">Work in UK or Japan</span></div>
+          <div class="litem"><span class="lnum">3</span><span class="ltext">Work at a top-tier tech company</span></div>
+          <div class="litem"><span class="lnum">4</span><span class="ltext">Countdown New Year's Eve at Times Square</span></div>
+          <div class="litem"><span class="lnum">5</span><span class="ltext">Exit a useful and helpful startup</span></div>
+          <div class="litem"><span class="lnum">6</span><span class="ltext">Build a useful tool for the education system</span></div>
+          <div class="litem"><span class="lnum">7</span><span class="ltext">Marry the love of my life (soon...)</span></div>
+          <div class="litem"><span class="lnum">8</span><span class="ltext">Experience zero gravity</span></div>
+          <div class="litem"><span class="lnum done">9</span><span class="ltext done">Work fully remote for an international company</span></div>
+          <div class="litem"><span class="lnum">10</span><span class="ltext">Drive a Tesla</span></div>
+          <div class="litem"><span class="lnum">11</span><span class="ltext">Get a patent</span></div>
+          <div class="litem"><span class="lnum">12</span><span class="ltext">Start a nonprofit organisation</span></div>
+          <div class="litem"><span class="lnum">13</span><span class="ltext">Sleep outside on the beach under the stars</span></div>
+          <div class="litem"><span class="lnum">14</span><span class="ltext">Live in another country</span></div>
+          <div class="litem"><span class="lnum">15</span><span class="ltext">Build my own home</span></div>
+          <div class="litem"><span class="lnum done">16</span><span class="ltext done">Build a production AI agent from scratch</span></div>
+        </div>
+        <div>
+          <div class="litem"><span class="lnum">17</span><span class="ltext">Have a 2000 Elo chess rating</span></div>
+          <div class="litem"><span class="lnum">18</span><span class="ltext">Visit an island I've never been to</span></div>
+          <div class="litem"><span class="lnum">19</span><span class="ltext">Jump out of a plane</span></div>
+          <div class="litem"><span class="lnum">20</span><span class="ltext">Take a hot-air balloon ride</span></div>
+          <div class="litem"><span class="lnum">21</span><span class="ltext">Publish a paid app or game</span></div>
+          <div class="litem"><span class="lnum">22</span><span class="ltext">Visit all seven continents (1/7)</span></div>
+          <div class="litem"><span class="lnum done">23</span><span class="ltext done">Get promoted at a job</span></div>
+          <div class="litem"><span class="lnum">24</span><span class="ltext">Eat sushi in Japan</span></div>
+          <div class="litem"><span class="lnum done">25</span><span class="ltext done">Fall in love</span></div>
+          <div class="litem"><span class="lnum">26</span><span class="ltext">Build a custom AI life coach</span></div>
+          <div class="litem"><span class="lnum">27</span><span class="ltext done">Get into competitive programming</span></div>
+          <div class="litem"><span class="lnum">28</span><span class="ltext">Ship a side project with 1000+ users</span></div>
+          <div class="litem"><span class="lnum">29</span><span class="ltext">Write a technical blog</span></div>
+          <div class="litem"><span class="lnum">30</span><span class="ltext done">Learn Portuguese fluently</span></div>
+          <div class="litem"><span class="lnum">31</span><span class="ltext">Mentor someone into their first dev job</span></div>
+          <div class="litem"><span class="lnum">32</span><span class="ltext">Visit a jungle</span></div>
+        </div>
+      </div>
+      <footer>© <span id="footer-year"></span> Jeffrey Sánchez</footer>
+    </div>
+  </div>
+
+  <div id="view-pokedesk" class="view">
+    <div class="page-wide">
+      <h2 class="page-h1">Hall of Legends</h2>
+      <p class="pokedesk-sub">The strongest creatures ever to exist. No weaklings allowed.</p>
+      <div class="poke-grid" id="poke-grid"></div>
+      <footer>© <span id="footer-year"></span> Jeffrey Sánchez</footer>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('nav a[data-view]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelectorAll('nav a[data-view]').forEach(x => x.classList.remove('active'));
+        document.querySelectorAll('.view').forEach(x => x.classList.remove('active'));
+        a.classList.add('active');
+        document.getElementById('view-' + a.dataset.view).classList.add('active');
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        document.getElementById('main-nav').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('open');
+      });
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mainNav = document.getElementById('main-nav');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mainNav.classList.toggle('open');
+    });
+
+    let fType = 'all', fLang = 'all';
+    function filterProjects() {
+      document.querySelectorAll('#pgrid .pcard').forEach(c => {
+        const tOk = fType === 'all' || c.dataset.t.split(',').includes(fType);
+        const lOk = fLang === 'all' || c.dataset.l.split(',').includes(fLang);
+        c.classList.toggle('hidden', !(tOk && lOk));
+      });
+    }
+    document.querySelectorAll('#ft .pill').forEach(p => {
+      p.addEventListener('click', () => {
+        document.querySelectorAll('#ft .pill').forEach(x => x.classList.remove('on'));
+        p.classList.add('on'); fType = p.dataset.f; filterProjects();
+      });
+    });
+    document.querySelectorAll('#fl .pill').forEach(p => {
+      p.addEventListener('click', () => {
+        document.querySelectorAll('#fl .pill').forEach(x => x.classList.remove('on'));
+        p.classList.add('on'); fLang = p.dataset.f; filterProjects();
+      });
+    });
+
+    function setTheme(light) {
+      document.documentElement.classList.toggle('light', light);
+      const label = light ? '● Dark' : '☀ Light';
+      document.getElementById('theme-toggle').textContent = label;
+      document.getElementById('theme-toggle-desk').textContent = label;
+    }
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      setTheme(!document.documentElement.classList.contains('light'));
+    });
+    document.getElementById('theme-toggle-desk').addEventListener('click', () => {
+      setTheme(!document.documentElement.classList.contains('light'));
+    });
+
+    const CDN = 'https://img.pokemondb.net/sprites/home/normal/';
+
+    const POKEMON = [
+      {rank: 1, img: 'eternatus-eternamax', name: 'Eternatus Eternamax', gen: 'Gen VIII', types: ['poison', 'dragon'], hp: 255, atk: 115, def: 250, spa: 125, spd: 250, spe: 130},
+      {rank: 2, img: 'rayquaza-mega', name: 'Mega Rayquaza', gen: 'Gen VI', types: ['dragon', 'flying'], hp: 105, atk: 180, def: 100, spa: 180, spd: 100, spe: 115},
+      {rank: 3, img: 'mewtwo-mega-x', name: 'Mega Mewtwo X', gen: 'Gen VI', types: ['psychic', 'fighting'], hp: 106, atk: 190, def: 100, spa: 154, spd: 100, spe: 130},
+      {rank: 4, img: 'mewtwo-mega-y', name: 'Mega Mewtwo Y', gen: 'Gen VI', types: ['psychic'], hp: 106, atk: 150, def: 70, spa: 194, spd: 120, spe: 140},
+      {rank: 5, img: 'calyrex-shadow-rider', name: 'Calyrex Shadow', gen: 'Gen VIII', types: ['psychic', 'ghost'], hp: 100, atk: 85, def: 80, spa: 165, spd: 100, spe: 150},
+      {rank: 6, img: 'necrozma-ultra', name: 'Necrozma Ultra', gen: 'Gen VII', types: ['psychic', 'dragon'], hp: 97, atk: 167, def: 97, spa: 167, spd: 97, spe: 129},
+      {rank: 7, img: 'zacian-crowned', name: 'Zacian Crowned', gen: 'Gen VIII', types: ['fairy', 'steel'], hp: 92, atk: 170, def: 115, spa: 80, spd: 115, spe: 148},
+      {rank: 8, img: 'zamazenta-crowned', name: 'Zamazenta Crowned', gen: 'Gen VIII', types: ['fighting', 'steel'], hp: 92, atk: 130, def: 145, spa: 80, spd: 145, spe: 128},
+      {rank: 9, img: 'zygarde-complete', name: 'Zygarde Completo', gen: 'Gen VI', types: ['dragon', 'ground'], hp: 216, atk: 100, def: 121, spa: 91, spd: 95, spe: 85},
+      {rank: 10, img: 'arceus', name: 'Arceus', gen: 'Gen IV', types: ['normal'], hp: 120, atk: 120, def: 120, spa: 120, spd: 120, spe: 120},
+      {rank: 11, img: 'mewtwo', name: 'Mewtwo', gen: 'Gen I', types: ['psychic'], hp: 106, atk: 110, def: 90, spa: 154, spd: 90, spe: 130},
+      {rank: 12, img: 'rayquaza', name: 'Rayquaza', gen: 'Gen III', types: ['dragon', 'flying'], hp: 105, atk: 150, def: 90, spa: 150, spd: 90, spe: 95},
+      {rank: 13, img: 'dialga', name: 'Dialga', gen: 'Gen IV', types: ['steel', 'dragon'], hp: 100, atk: 120, def: 120, spa: 150, spd: 100, spe: 90},
+      {rank: 14, img: 'palkia', name: 'Palkia', gen: 'Gen IV', types: ['water', 'dragon'], hp: 90, atk: 120, def: 100, spa: 150, spd: 120, spe: 100},
+      {rank: 15, img: 'giratina-origin', name: 'Giratina', gen: 'Gen IV', types: ['ghost', 'dragon'], hp: 150, atk: 100, def: 120, spa: 100, spd: 120, spe: 90},
+      {rank: 16, img: 'lugia', name: 'Lugia', gen: 'Gen II', types: ['psychic', 'flying'], hp: 106, atk: 90, def: 130, spa: 90, spd: 154, spe: 110},
+      {rank: 17, img: 'ho-oh', name: 'Ho-Oh', gen: 'Gen II', types: ['fire', 'flying'], hp: 106, atk: 130, def: 90, spa: 110, spd: 154, spe: 90},
+      {rank: 18, img: 'xerneas', name: 'Xerneas', gen: 'Gen VI', types: ['fairy'], hp: 126, atk: 131, def: 95, spa: 131, spd: 98, spe: 99},
+      {rank: 19, img: 'yveltal', name: 'Yveltal', gen: 'Gen VI', types: ['dark', 'flying'], hp: 126, atk: 131, def: 95, spa: 131, spd: 98, spe: 99},
+      {rank: 20, img: 'kyogre', name: 'Kyogre', gen: 'Gen III', types: ['water'], hp: 100, atk: 100, def: 90, spa: 150, spd: 140, spe: 90},
+    ];
+    POKEMON.forEach(p => { p.bst = p.hp + p.atk + p.def + p.spa + p.spd + p.spe; });
+
+    const STATS = [
+      {key: 'hp', label: 'HP', cls: 'bar-hp'},
+      {key: 'atk', label: 'ATK', cls: 'bar-atk'},
+      {key: 'def', label: 'DEF', cls: 'bar-def'},
+      {key: 'spa', label: 'SpA', cls: 'bar-spa'},
+      {key: 'spd', label: 'SpD', cls: 'bar-spd'},
+      {key: 'spe', label: 'SPE', cls: 'bar-spe'},
+    ];
+    const MAX = 255;
+
+    const BALL = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f0f0f0' stroke='%23bbb' stroke-width='4'/%3E%3Cpath d='M4 50h92' stroke='%23bbb' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='14' fill='white' stroke='%23bbb' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='6' fill='%23bbb'/%3E%3Cpath d='M6 44 Q50 2 94 44' fill='%23e55' opacity='.4'/%3E%3C/svg%3E";
+
+    function onImgError(el) {
+      el.onerror = null;
+      el.src = BALL;
+      el.style.opacity = '0.5';
+      el.style.imageRendering = 'auto';
+    }
+
+    function buildCard(p) {
+      const typeHtml = p.types.map(t => `<span class="pk-type t-${t}">${t}</span>`).join('');
+      const statRows = STATS.map(s => {
+        const pct = Math.round((p[s.key] / MAX) * 100);
+        return `<div class="pk-stat-row">
+          <span class="pk-stat-label">${s.label}</span>
+          <span class="pk-stat-val">${p[s.key]}</span>
+          <div class="pk-bar"><div class="pk-bar-fill ${s.cls}" style="width:${pct}%"></div></div>
+        </div>`;
+      }).join('');
+
+      return `<div class="pk-card">
+        <div class="pk-front">
+          <span class="pk-num">#${String(p.rank).padStart(2, '0')}</span>
+          <div class="pk-sprite-wrap">
+            <img class="pk-sprite" src="${CDN}${p.img}.png" alt="${p.name}"
+                 onerror="onImgError(this)" loading="lazy">
+          </div>
+          <div class="pk-name">${p.name}</div>
+          <div class="pk-types">${typeHtml}</div>
+        </div>
+        <div class="pk-back">
+          <div class="pk-back-name">${p.name}</div>
+          <div class="pk-back-gen">${p.gen}</div>
+          ${statRows}
+          <div class="pk-bst"><span>BST </span>${p.bst}</div>
+        </div>
+      </div>`;
+    }
+
+    document.getElementById('poke-grid').innerHTML = POKEMON.map(buildCard).join('');
+
+    const TL_PHRASES = [
+      "I ship Go services that don't wake you at 3am, and AI agents that actually work.",
+      "12 years of shipping. Zero hand-holding required.",
+      "backend engineer who cuts your p99 and ships your LLM — same sprint."
+    ];
+
+    const tlEl = document.getElementById('tagline-text');
+    const PAUSE_END = 4500, PAUSE_START = 400;
+    let i = 0, deleting = false, phraseIdx = Math.floor(Math.random() * TL_PHRASES.length);
+
+    function getRandSpeed(base) {
+      return base + Math.floor(Math.random() * 28) - 10;
+    }
+
+    function typeTL() {
+      const phrase = TL_PHRASES[phraseIdx];
+      if (!deleting) {
+        tlEl.textContent = phrase.slice(0, i);
+        i++;
+        if (i > phrase.length) {
+          deleting = true;
+          setTimeout(typeTL, PAUSE_END);
+          return;
+        }
+        setTimeout(typeTL, getRandSpeed(38));
+      } else {
+        tlEl.textContent = phrase.slice(0, i);
+        i--;
+        if (i < 0) {
+          deleting = false;
+          i = 0;
+          let next;
+          do { next = Math.floor(Math.random() * TL_PHRASES.length); } while (next === phraseIdx);
+          phraseIdx = next;
+          setTimeout(typeTL, PAUSE_START);
+          return;
+        }
+        setTimeout(typeTL, getRandSpeed(16));
+      }
+    }
+
+    setTimeout(typeTL, 700);
+
+    document.querySelectorAll('#footer-year').forEach(el => {
+      el.textContent = new Date().getFullYear();
+    });
+
+    const WORKER = 'https://cf-visitors.jegasape.workers.dev';
+    (async () => {
+      try {
+        const res = await fetch(`${WORKER}/visit`, { method: 'POST' });
+        const data = await res.json();
+        document.getElementById('v-total').textContent = data.total.toLocaleString();
+        document.getElementById('v-unique').textContent = data.unique.toLocaleString();
+      } catch(e) {
+        console.warn('Visitor counter unavailable');
+      }
+    })();
+  </script>
+</body>
+
+</html>
